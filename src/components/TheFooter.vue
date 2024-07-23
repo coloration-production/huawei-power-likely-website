@@ -1,17 +1,14 @@
 <script lang="ts" setup>
-import { defineOptions } from 'vue';
+import { defineOptions } from 'vue'
 
-defineOptions({ name: 'the-footer' })
-
-
+defineOptions({ name: 'TheFooter' })
 </script>
 
 <template>
   <div class="the-footer">
     <!-- -->
     <TheAlignContainer>
-      the footer content
-
+      the footer content test
     </TheAlignContainer>
   </div>
 </template>
