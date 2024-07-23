@@ -1,7 +1,7 @@
 <script lang="ts" setup>
-import { defineOptions } from 'vue'
+import { defineOptions } from 'vue';
 
-defineOptions({ name: 'TheFooter' })
+defineOptions({ name: 'the-footer' })
 </script>
 
 <template>
