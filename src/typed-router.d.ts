@@ -24,6 +24,9 @@ declare module 'vue-router/auto-routes' {
     '/demo-markdown': RouteRecordInfo<'/demo-markdown', '/demo-markdown', Record<never, never>, Record<never, never>>,
     '/demo-scroll': RouteRecordInfo<'/demo-scroll', '/demo-scroll', Record<never, never>, Record<never, never>>,
     '/hi/[name]': RouteRecordInfo<'/hi/[name]', '/hi/:name', { name: ParamValue<true> }, { name: ParamValue<false> }>,
+    '/house-landlord': RouteRecordInfo<'/house-landlord', '/house-landlord', Record<never, never>, Record<never, never>>,
+    '/industry-store': RouteRecordInfo<'/industry-store', '/industry-store', Record<never, never>, Record<never, never>>,
+    '/mobile-power-system': RouteRecordInfo<'/mobile-power-system', '/mobile-power-system', Record<never, never>, Record<never, never>>,
     '/README': RouteRecordInfo<'/README', '/README', Record<never, never>, Record<never, never>>,
   }
 }

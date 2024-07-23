@@ -1,15 +1,14 @@
 <script lang="ts" setup>
-import { defineOptions } from 'vue';
-import { availableLocales, loadLanguageAsync } from '~/modules/i18n';
+import { defineOptions } from 'vue'
+import { loadLanguageAsync } from '~/modules/i18n'
 
-defineOptions({ name: 'the-header' })
+defineOptions({ name: 'TheHeader' })
 
 const { t, locale } = useI18n()
 
 async function toggleLocales() {
   // change to some real logic
-  const locales = availableLocales
-  const newLocale = locales[(locales.indexOf(locale.value) + 1) % locales.length]
+  const newLocale = locale.value === 'zh-CN' ? 'en' : 'zh-CN'
   await loadLanguageAsync(newLocale)
   locale.value = newLocale
 }
@@ -18,18 +17,35 @@ async function toggleLocales() {
 <template>
   <div class="the-header">
     <!-- -->
-    <TheAlignContainer class="flex justify-between items-center h-full">
+    <TheAlignContainer class="h-full flex items-center justify-between">
       <AppLink to="/" :title="t('button.home')" class="mr-12">
         LOGO
       </AppLink>
       <nav class="the-header-nav">
-        <AppLink to="/">Home</AppLink>
-        <AppLink :active-match-level="1" to="/hi/miemiemie">{{ t('intro.hi') }}</AppLink>
-        <AppLink :active-match-level="1" to="/demo-scroll">{{ t('header.scroll') }}</AppLink>
-        <AppLink :active-match-level="1" to="/demo-markdown">{{ t('header.markdown') }}</AppLink>
+        <AppLink to="/">
+          Home
+        </AppLink>
+        <AppLink :active-match-level="1" to="/house-landlord">
+          {{ t('nav.house-landlord') }}
+        </AppLink>
+        <AppLink :active-match-level="1" to="/industry-store">
+          {{ t('nav.industry-store') }}
+        </AppLink>
+        <AppLink :active-match-level="1" to="/mobile-power-system">
+          {{ t('nav.mobile-power-system') }}
+        </AppLink>
+        <AppLink :active-match-level="1" to="/hi/miemiemie">
+          {{ t('intro.hi') }}
+        </AppLink>
+        <AppLink :active-match-level="1" to="/demo-scroll">
+          {{ t('header.scroll') }}
+        </AppLink>
+        <AppLink :active-match-level="1" to="/demo-markdown">
+          {{ t('header.markdown') }}
+        </AppLink>
       </nav>
 
-      <div class="flex items-center h-full gap-4">
+      <div class="h-full flex items-center gap-4">
         <a :title="t('button.toggle_langs')" @click="toggleLocales()">
           <div i-carbon-language />
         </a>
@@ -38,7 +54,6 @@ async function toggleLocales() {
           <div i="carbon-sun dark:carbon-moon" />
         </a>
       </div>
-
     </TheAlignContainer>
   </div>
 </template>
@@ -51,7 +66,6 @@ async function toggleLocales() {
 .the-header-nav .app-link-active {
   @apply dark:text-black dark:bg-white text-white bg-black;
 }
-
 
 .the-header-nav {
   @apply flex-1 flex gap-4 h-full;

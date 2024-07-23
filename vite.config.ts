@@ -144,10 +144,10 @@ export default defineConfig({
   ],
 
   // https://github.com/vitest-dev/vitest
-  test: {
-    include: ['test/**/*.test.ts'],
-    environment: 'jsdom',
-  },
+  // test: {
+  //   include: ['test/**/*.test.ts'],
+  //   environment: 'jsdom',
+  // },
 
   // https://github.com/antfu/vite-ssg
   ssgOptions: {
