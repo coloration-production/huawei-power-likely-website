@@ -13,6 +13,9 @@ intro:
   whats-your-name: 输入你的名字
 not-found: 未找到页面
 nav:
+  home: 公司介绍
   house-landlord: 户用式业主
   industry-store: 工商业储能
   mobile-power-system: 移动电源系统
+  irrigation-system: 灌溉系统
+  product: 产品

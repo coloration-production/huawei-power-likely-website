@@ -1,23 +1,37 @@
 <script setup lang="ts">
-const { y } = useWindowScroll({ behavior: 'smooth' }) 
+import { loadLanguageAsync } from '~/modules/i18n'
+
+const { y } = useWindowScroll({ behavior: 'smooth' })
+const store = useAppStorage()
+
+const { locale } = useI18n()
+
+onBeforeMount(async () => {
+  await loadLanguageAsync(store.value.lang)
+  locale.value = store.value.lang
+})
 </script>
+
 <template>
   <main class="page-container">
     <TheHeader />
     <div class="flex-1">
       <RouterView />
 
-      <div v-if="y > 300" data-aos="fade-left" @click="y = 0" class="anchor-top">TOP</div>
+      <div v-if="y > 300" data-aos="fade-left" class="anchor-top" @click="y = 0">
+        TOP
+      </div>
     </div>
     <TheFooter />
   </main>
 </template>
+
 <style lang="postcss">
 .page-container {
-  @apply gray-700 dark:gray-200 min-h-100vh flex flex-col justify-between;
+  @apply gray-700 dark:gray-200 min-h-100vh flex flex-col justify-between relative;
 }
 
 .anchor-top {
-  @apply cursor-pointer fixed right-20 bottom-20 w-10 h-10 flex justify-center items-center border-1 border-black  dark:border-white ;
+  @apply cursor-pointer fixed right-20 bottom-20 w-10 h-10 flex justify-center items-center border-1 border-black  dark:border-white;
 }
 </style>

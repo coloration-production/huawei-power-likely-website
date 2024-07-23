@@ -13,6 +13,9 @@ intro:
   whats-your-name: What's your name?
 not-found: Not found
 nav:
+  home: Home
   house-landlord: House Landlord
   industry-store: Industry Store
   mobile-power-system: Mobile Power System
+  irrigation-system: Irrigation System
+  product: Production
