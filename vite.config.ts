@@ -23,7 +23,15 @@ export default defineConfig({
       '~/': `${path.resolve(__dirname, 'src')}/`,
     },
   },
-
+  server: {
+    proxy: {
+      '/api': {
+        target: 'http://aoqiang.miaobiapp.cn/index.php/api/', // 设置代理目标
+        changeOrigin: true, // 是否改变请求源地址
+        rewrite: path => path.replace(/^\/api/, ''), // 将 /api 替换为空字符串
+      },
+    },
+  },
   plugins: [
     VueMacros({
       plugins: {

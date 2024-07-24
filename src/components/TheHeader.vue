@@ -47,7 +47,7 @@ async function toggleLocales() {
       </nav>
 
       <div class="h-full flex items-center gap-6 text-sm">
-        <AppLink :active-match-level="1" to="/product">
+        <AppLink :active-match-level="1" to="/cooperation">
           {{ t('合作及售后') }}
         </AppLink>
         <a :title="t('button.toggle_langs')" class="flex items-center gap-2" @click="toggleLocales()">
