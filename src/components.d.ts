@@ -8,10 +8,14 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     AppLink: typeof import('./components/AppLink.vue')['default']
+    BlueButton: typeof import('./components/BlueButton.vue')['default']
     ContactForm: typeof import('./components/ContactForm.vue')['default']
+    HousePackage: typeof import('./components/HousePackage.vue')['default']
+    HouseProduct: typeof import('./components/HouseProduct.vue')['default']
     README: typeof import('./components/README.md')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    ScrollCard: typeof import('./components/ScrollCard.vue')['default']
     ScrollFrame: typeof import('./components/ScrollFrame.vue')['default']
     SplitTitle: typeof import('./components/SplitTitle.vue')['default']
     TheAlignContainer: typeof import('./components/TheAlignContainer.vue')['default']

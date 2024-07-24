@@ -27,3 +27,9 @@ useAos()
 <template>
   <RouterView />
 </template>
+
+<style lang="postcss">
+.gradient-blue-bg {
+  background-image: linear-gradient(90deg, #2b77f4 0%, #519dff 100%);
+}
+</style>

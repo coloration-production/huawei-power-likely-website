@@ -6,7 +6,7 @@ defineOptions({ name: 'ProductPage' })
 
 <template>
   <div class="product-page">
-    product
+    <img class="absolute relative z-1 w-full" src="/product.png" alt="">
   </div>
 </template>
 

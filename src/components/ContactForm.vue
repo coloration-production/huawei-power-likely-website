@@ -60,9 +60,9 @@ const form = reactive({
       </div>
 
       <div class="w-full flex justify-center pt-5">
-        <button class="rounded-full bg-blue px-6 py-3 text-white hover:bg-blue-600">
+        <BlueButton>
           确认提交
-        </button>
+        </BlueButton>
       </div>
     </div>
   </TheAlignContainer>
