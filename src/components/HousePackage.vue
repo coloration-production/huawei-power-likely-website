@@ -33,7 +33,9 @@ withDefaults(defineProps<{
         <div v-for="(item, i) in group" :key="i" class="flex flex-col" :class="coverRight ? 'items-start' : 'items-end'">
           <div class="mb-2 flex items-end">
             <span class="text-4xl font-700" v-html="item.title" />
-            /<span class="text-md font-700" v-html="item.titleSuffix" />
+            <template v-if="item.titleSuffix">
+              /<span class="text-md font-700" v-html="item.titleSuffix" />
+            </template>
           </div>
           <div class="text-md mb-7" v-html="item.sub" />
           <div

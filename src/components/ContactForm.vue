@@ -1,5 +1,8 @@
+<!-- eslint-disable no-alert -->
 <script lang="ts" setup>
 import { defineOptions } from 'vue'
+import md5 from 'md5'
+import { submitMessage } from '~/api/common'
 
 defineOptions({ name: 'ContactForm' })
 
@@ -14,6 +17,33 @@ const form = reactive({
   area: '',
   message: '',
 })
+
+let isDisable = false
+
+function submitData() {
+  if (!form.name) {
+    alert('姓名不能为空')
+    return false
+  }
+  if (!form.tel) {
+    alert('电话不能为空')
+    return false
+  }
+  if (isDisable) {
+    alert('请不要频繁提交')
+    return false
+  }
+  isDisable = true
+  setTimeout(() => {
+    isDisable = false
+  }, 2000)
+  const stamp = Math.round(new Date().getTime() / 1000)
+  const sign = md5(`aoqiangguangfu${stamp}`)
+  const { company, position, nickname: call, name, email, tel: mobile, city, area: country, message: content } = form
+  submitMessage({ sign, time: stamp, type: 1, country, city, company, position, name, mobile, email, content, call }).then((_res) => {
+    alert('提交成功')
+  })
+}
 </script>
 
 <template>
@@ -55,12 +85,12 @@ const form = reactive({
         </div>
         <div class="form-item col-span-2">
           <label for="message">信息</label>
-          <textarea id="" name="" cols="30" rows="10" />
+          <textarea id="" v-model="form.message" name="" cols="30" rows="10" />
         </div>
       </div>
 
       <div class="w-full flex justify-center pt-8">
-        <BlueButton size="lg">
+        <BlueButton size="lg" @click="submitData">
           确认提交
         </BlueButton>
       </div>

@@ -1,7 +1,16 @@
 <script lang="ts" setup>
 import { defineOptions } from 'vue'
 
+import { headerRequest } from '~/api/common'
+
 defineOptions({ name: 'TheFooter' })
+
+const pageData = ref<any>(null)
+
+onBeforeMount(async () => {
+  const result: any = await headerRequest({ type: 1 })
+  pageData.value = result.data
+})
 </script>
 
 <template>
@@ -11,14 +20,14 @@ defineOptions({ name: 'TheFooter' })
       <div>
         <div class="mb-4 flex">
           <div class="mr-36 text-xl">
-            北京市顺义区后沙峪天竺万科中心A座 801 室
+            {{ pageData?.address }}
           </div>
           <div class="text-xl">
-            邮箱: 3829387182@qq.com
+            邮箱: {{ pageData?.email }}
           </div>
         </div>
         <div class="text-lg">
-          Copyright 2024 陕ICP备13006051号-2 版权所有公司名称
+          {{ pageData?.copyright }}
         </div>
       </div>
       <div class="flex gap-4.4">

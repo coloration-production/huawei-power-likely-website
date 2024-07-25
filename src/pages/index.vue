@@ -10,26 +10,15 @@ defineOptions({
   name: 'IndexPage',
 })
 
-const common = useCommonStore()
-console.log(common)
-
 SwiperCore.use([EffectCoverflow, Navigation, Autoplay])
 
 const pageData = ref<any>(null)
-const loading = ref(true)
-const error = ref<string | null>(null)
+const qualityImgs = ref([])
 
 onMounted(async () => {
-  try {
-    const result: any = await companyDetail({ type: 1 })
-    pageData.value = result.data
-  }
-  catch (err: any) {
-    error.value = err.message
-  }
-  finally {
-    loading.value = false
-  }
+  const result: any = await companyDetail({ type: 1 })
+  pageData.value = result.data
+  qualityImgs.value = result.data.company_qualifications_img.split(',')
 })
 
 const coverflowEffect = {
@@ -66,21 +55,21 @@ const coverflowEffect = {
       <div class="company-photo-wall h-180 bg-[#E7F0FF]">
         <TheAlignContainer>
           <div class="pb-10 pt-14 text-center text-[2.2rem]">
-            <SplitTitle title="公司概况" />
-            {{ pageData?.company_overview_title }}
+            <SplitTitle :title="pageData?.company_overview_title" />
           </div>
           <div class="pb-10 text-center text-xl text-neutral-500 font-thin">
             {{ pageData?.company_overview_content }}公司概况内容公司概况内容公司概况内容
           </div>
           <div class="photo-swiper relative">
             <Swiper
-              :slides-per-view="2" :centered-slides="true" effect="coverflow"
-              :coverflow-effect="coverflowEffect" :loop="true" :navigation="{ nextEl: '.bus-next', prevEl: '.bus-prev' }"
+              v-if="pageData && pageData.company_overview_img.length" :slides-per-view="2" :centered-slides="true"
+              effect="coverflow" :coverflow-effect="coverflowEffect" :loop="true"
+              :navigation="{ nextEl: '.bus-next', prevEl: '.bus-prev' }"
             >
-              <SwiperSlide v-for="i in 5" :key="i">
-                <img src="https://fakeimg.pl/600x400/282828/eae0d0/?text=%E4%BA%A7%E5%93%81%E5%9B%BE&font=noto" alt="" srcset="">
+              <SwiperSlide v-for="item in pageData.company_overview_img" :key="item.id">
+                <img class="h-100 w-150 object-cover" :src="item.img_url" alt="" srcset="">
                 <div class="pt-7 text-center text-xl text-neutral-500">
-                  {{ `slide ${i}` }}
+                  {{ item.img_title }}
                 </div>
               </SwiperSlide>
             </Swiper>
@@ -92,18 +81,19 @@ const coverflowEffect = {
       <div class="company-aptitude h-180">
         <TheAlignContainer>
           <div class="pb-4 pt-8 text-center text-[2.2rem]">
-            {{ pageData?.company_qualifications_title }}资 ｜ 质 ｜ 认 ｜ 证
+            {{ pageData?.company_qualifications_title }}
           </div>
           <div class="pb-10 text-center text-xl text-neutral-500 font-thin">
             {{ pageData?.company_qualifications_content }}文案需要修改文案需要修改文案需要修改文案需要修改文案需要修改文案需要修改文案
           </div>
           <div class="aptitude-swiper relative">
             <Swiper
-              :slides-per-view="4" :space-between="30" :loop="true"
+              v-if="qualityImgs.length" :slides-per-view="4" :space-between="30"
+              :loop="true"
               :navigation="{ nextEl: '.bus-next2', prevEl: '.bus-prev2' }"
             >
-              <SwiperSlide v-for="i in 5" :key="i">
-                <img src="https://fakeimg.pl/280x400/282828/eae0d0/?text=%E4%BA%A7%E5%93%81%E5%9B%BE&font=noto" alt="" srcset="">
+              <SwiperSlide v-for="(img, i) in qualityImgs" :key="i">
+                <img class="h-100 w-140 object-cover" :src="img" alt="" srcset="">
               </SwiperSlide>
             </Swiper>
             <div class="btn-prev bus-prev2 btn" />

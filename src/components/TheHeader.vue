@@ -1,8 +1,18 @@
+<!-- eslint-disable no-console -->
 <script lang="ts" setup>
 import { defineOptions } from 'vue'
 import { loadLanguageAsync } from '~/modules/i18n'
 
+import { headerRequest } from '~/api/common'
+
 defineOptions({ name: 'TheHeader' })
+
+const pageData = ref<any>(null)
+
+onBeforeMount(async () => {
+  const result: any = await headerRequest({ type: 1 })
+  pageData.value = result.data
+})
 
 const store = useAppStorage()
 
@@ -27,28 +37,28 @@ async function toggleLocales() {
       </AppLink>
       <nav class="the-header-nav">
         <AppLink to="/">
-          {{ t('nav.home') }}
+          {{ pageData?.company_abount }}
         </AppLink>
-        <AppLink :active-match-level="1" to="/house-landlord">
-          {{ t('nav.house-landlord') }}
+        <AppLink v-if="pageData?.nw_household_style" :active-match-level="1" to="/house-landlord">
+          {{ pageData?.nw_household_style }}
         </AppLink>
-        <AppLink :active-match-level="1" to="/industry-store">
-          {{ t('nav.industry-store') }}
+        <AppLink v-if="pageData?.nw_industry" :active-match-level="1" to="/industry-store">
+          {{ pageData?.nw_industry }}
         </AppLink>
-        <AppLink :active-match-level="1" to="/irrigation-system">
-          {{ t('nav.irrigation-system') }}
+        <AppLink v-if="pageData?.nw_irrigate" :active-match-level="1" to="/irrigation-system">
+          {{ pageData?.nw_irrigate }}
         </AppLink>
-        <AppLink :active-match-level="1" to="/mobile-power-system">
-          {{ t('nav.mobile-power-system') }}
+        <AppLink v-if="pageData?.nw_portable_power" :active-match-level="1" to="/mobile-power-system">
+          {{ pageData?.nw_portable_power }}
         </AppLink>
         <AppLink :active-match-level="1" to="/product">
-          {{ t('nav.product') }}
+          {{ pageData?.product }}
         </AppLink>
       </nav>
 
       <div class="h-full flex items-center gap-6 text-xl">
         <AppLink :active-match-level="1" to="/cooperation">
-          {{ t('合作及售后') }}
+          {{ pageData?.call_me }}
         </AppLink>
         <a :title="t('button.toggle_langs')" class="flex items-center gap-2" @click="toggleLocales()">
           <div i-carbon-language /> 简体中文

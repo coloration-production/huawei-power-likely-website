@@ -1,7 +1,76 @@
 <script lang="ts" setup>
 import { defineOptions } from 'vue'
+import { householdStyleRequest } from '~/api/common'
 
 defineOptions({ name: 'HouseLandlord' })
+const pageData = ref<any>(null)
+const taocanArr = ref<any>([])
+
+onMounted(async () => {
+  const result: any = await householdStyleRequest({ type: 1 })
+  pageData.value = result.data
+  taocanArr.value = [{
+    title: result.data.taocan_one_title,
+    desc: result.data.taocan_one_desc,
+    img: result.data.taocan_one_img,
+    chanpin: [
+      { title: result.data.taocan_one_chanpin_one_title, xinghao: result.data.taocan_one_chanpin_one_xinghao },
+      { title: result.data.taocan_one_chanpin_two_title, xinghao: result.data.taocan_one_chanpin_two_xinghao },
+      { title: result.data.taocan_one_chanpin_three_title, xinghao: result.data.taocan_one_chanpin_three_xinghao },
+    ],
+    fuchanpin: [
+      { title: result.data.taocan_one_fuchanpin_one_title, xinghao: result.data.taocan_one_fuchanpin_one_xinghao },
+      { title: result.data.taocan_one_fuchanpin_two_title, xinghao: result.data.taocan_one_fuchanpin_two_xinghao },
+      { title: result.data.taocan_one_fuchanpin_three_title, xinghao: result.data.taocan_one_fuchanpin_three_xinghao },
+      { title: result.data.taocan_one_fuchanpin_four_title, xinghao: result.data.taocan_one_fuchanpin_four_xinghao },
+      { title: result.data.taocan_one_fuchanpin_five_title, xinghao: result.data.taocan_one_fuchanpin_five_xinghao },
+      { title: result.data.taocan_one_fuchanpin_six_title, xinghao: result.data.taocan_one_fuchanpin_six_xinghao },
+      { title: result.data.taocan_one_fuchanpin_seven_title, xinghao: result.data.taocan_one_fuchanpin_seven_xinghao },
+      { title: result.data.taocan_one_fuchanpin_eight_title, xinghao: result.data.taocan_one_fuchanpin_eight_xinghao },
+      { title: result.data.taocan_one_fuchanpin_nine_title, xinghao: result.data.taocan_one_fuchanpin_nine_xinghao },
+    ],
+  }, {
+    title: result.data.taocan_two_title,
+    desc: result.data.taocan_two_desc,
+    img: result.data.taocan_two_img,
+    chanpin: [
+      { title: result.data.taocan_two_chanpin_one_title, xinghao: result.data.taocan_two_chanpin_one_xinghao },
+      { title: result.data.taocan_two_chanpin_two_title, xinghao: result.data.taocan_two_chanpin_two_xinghao },
+      { title: result.data.taocan_two_chanpin_three_title, xinghao: result.data.taocan_two_chanpin_three_xinghao },
+    ],
+    fuchanpin: [
+      { title: result.data.taocan_two_fuchanpin_one_title, xinghao: result.data.taocan_two_fuchanpin_one_xinghao },
+      { title: result.data.taocan_two_fuchanpin_two_title, xinghao: result.data.taocan_two_fuchanpin_two_xinghao },
+      { title: result.data.taocan_two_fuchanpin_three_title, xinghao: result.data.taocan_two_fuchanpin_three_xinghao },
+      { title: result.data.taocan_two_fuchanpin_four_title, xinghao: result.data.taocan_two_fuchanpin_four_xinghao },
+      { title: result.data.taocan_two_fuchanpin_five_title, xinghao: result.data.taocan_two_fuchanpin_five_xinghao },
+      { title: result.data.taocan_two_fuchanpin_six_title, xinghao: result.data.taocan_two_fuchanpin_six_xinghao },
+      { title: result.data.taocan_two_fuchanpin_seven_title, xinghao: result.data.taocan_two_fuchanpin_seven_xinghao },
+      { title: result.data.taocan_two_fuchanpin_eight_title, xinghao: result.data.taocan_two_fuchanpin_eight_xinghao },
+      { title: result.data.taocan_two_fuchanpin_nine_title, xinghao: result.data.taocan_two_fuchanpin_nine_xinghao },
+    ],
+  }, {
+    title: result.data.taocan_three_title,
+    desc: result.data.taocan_three_desc,
+    img: result.data.taocan_three_img,
+    chanpin: [
+      { title: result.data.taocan_three_chanpin_one_title, xinghao: result.data.taocan_three_chanpin_one_xinghao },
+      { title: result.data.taocan_three_chanpin_two_title, xinghao: result.data.taocan_three_chanpin_two_xinghao },
+      { title: result.data.taocan_three_chanpin_three_title, xinghao: result.data.taocan_three_chanpin_three_xinghao },
+    ],
+    fuchanpin: [
+      { title: result.data.taocan_three_fuchanpin_one_title, xinghao: result.data.taocan_three_fuchanpin_one_xinghao },
+      { title: result.data.taocan_three_fuchanpin_two_title, xinghao: result.data.taocan_three_fuchanpin_two_xinghao },
+      { title: result.data.taocan_three_fuchanpin_three_title, xinghao: result.data.taocan_three_fuchanpin_three_xinghao },
+      { title: result.data.taocan_three_fuchanpin_four_title, xinghao: result.data.taocan_three_fuchanpin_four_xinghao },
+      { title: result.data.taocan_three_fuchanpin_five_title, xinghao: result.data.taocan_three_fuchanpin_five_xinghao },
+      { title: result.data.taocan_three_fuchanpin_six_title, xinghao: result.data.taocan_three_fuchanpin_six_xinghao },
+      { title: result.data.taocan_three_fuchanpin_seven_title, xinghao: result.data.taocan_three_fuchanpin_seven_xinghao },
+      { title: result.data.taocan_three_fuchanpin_eight_title, xinghao: result.data.taocan_three_fuchanpin_eight_xinghao },
+      { title: result.data.taocan_three_fuchanpin_nine_title, xinghao: result.data.taocan_three_fuchanpin_nine_xinghao },
+    ],
+  }]
+})
 </script>
 
 <template>
@@ -10,13 +79,13 @@ defineOptions({ name: 'HouseLandlord' })
     <div class="absolute top-26 z-2 w-full">
       <!-- -->
 
-      <section class="h-245 bg-cover" style="background-image: url(/houselord-01.png)">
+      <section class="h-245 bg-cover" :style="`background-image: url(${pageData?.banner})`">
         <TheAlignContainer class="h-full pt-60">
           <div class="mb-4 text-7xl text-white font-700">
-            家庭绿电
+            {{ pageData?.banner_desc.split('|')[0] }}
           </div>
           <div class="text-6xl text-white">
-            墅式光储能
+            {{ pageData?.banner_desc.split('|')[1] }}
           </div>
           <div class="flex gap-8 pt-15">
             <button class="rounded-full bg-white px-7 py-3 text-xl">
@@ -31,7 +100,7 @@ defineOptions({ name: 'HouseLandlord' })
       <section class="h-270" />
       <section class="h-268 bg-cover" style="background-image: url(/houselord-03.png)" />
       <section class="h-270 bg-white pt-17">
-        <SplitTitle title="产品信息" />
+        <SplitTitle :title="pageData?.chanpin_info_title" />
         <TheAlignContainer class="pt-16">
           <TabButtonGroup>
             <button class="active">
@@ -65,7 +134,7 @@ defineOptions({ name: 'HouseLandlord' })
         </TheAlignContainer>
       </section>
       <section class="h-270 bg-sky-100 pt-24">
-        <SplitTitle title="案例展示" />
+        <SplitTitle :title="pageData?.anli_title" />
 
         <TheAlignContainer class="pt-20">
           <div class="grid grid grid-cols-4 grid-rows-3 h-190 gap-4">
@@ -98,35 +167,41 @@ defineOptions({ name: 'HouseLandlord' })
       </section>
       <section class="h-467 bg-white">
         <TheAlignContainer class="pt-18">
-          <SplitTitle title="套餐展示" class="mb-18" />
+          <SplitTitle :title="pageData?.taocan_title" class="mb-18" />
           <div class="flex flex-col gap-26">
             <HousePackage
-              v-for="i in [1, 2, 3]"
+              v-for="(item, i) in taocanArr"
               :key="i"
-              title="单相5KW/15KWH离网发电系统清单表"
-              sub="可匹配家用电器5000W以内持续运行3个小时(根据功率大小计算相应运行时间）时间=电池电量/功率"
-              :cover="`/houselord-05-0${i}.png`"
+              :title="item.title"
+              :sub="item.desc"
+              :cover="item.img"
               link=""
               :cover-right=" i % 2 === 1"
               :group="[
                 {
-                  title: '5KWH',
-                  titleSuffix: '3台',
-                  sub: '堆叠式电磁组',
-                  desc: '光伏电缆连接插件: MC4 <br />光伏电缆4mm<br />输出控制箱:2P40A',
+                  title: item.chanpin[0].xinghao.split('/')[0],
+                  titleSuffix: item.chanpin[0].xinghao.split('/')[1],
+                  sub: item.chanpin[0].title,
+                  desc: `${item.fuchanpin[0].title}:${item.fuchanpin[0].xinghao}<br />${item.fuchanpin[1].title}:${item.fuchanpin[1].xinghao}<br />${item.fuchanpin[2].title}:${item.fuchanpin[2].xinghao}`,
                 },
                 {
-                  title: '5KWH',
-                  titleSuffix: '3台',
-                  sub: '堆叠式电磁组',
-                  desc: '光伏电缆连接插件: MC4 <br />光伏电缆4mm<br />输出控制箱:2P40A',
+                  title: item.chanpin[1].xinghao.split('/')[0],
+                  titleSuffix: item.chanpin[1].xinghao.split('/')[1],
+                  sub: item.chanpin[1].title,
+                  desc: `${item.fuchanpin[3].title}:${item.fuchanpin[3].xinghao}<br />${item.fuchanpin[4].title}:${item.fuchanpin[4].xinghao}<br />${item.fuchanpin[5].title}:${item.fuchanpin[5].xinghao}`,
                 },
                 {
-                  title: '5KWH',
-                  titleSuffix: '3台',
-                  sub: '堆叠式电磁组',
-                  desc: '光伏电缆连接插件: MC4 <br />光伏电缆4mm<br />输出控制箱:2P40A',
+                  title: item.chanpin[2].xinghao.split('/')[0],
+                  titleSuffix: item.chanpin[2].xinghao.split('/')[1],
+                  sub: item.chanpin[2].title,
+                  desc: `${item.fuchanpin[6].title}:${item.fuchanpin[6].xinghao}<br />${item.fuchanpin[7].title}:${item.fuchanpin[7].xinghao}<br />${item.fuchanpin[8].title}:${item.fuchanpin[8].xinghao}`,
                 },
+                // {
+                //   title: '5KWH',
+                //   titleSuffix: '3台',
+                //   sub: '堆叠式电磁组',
+                //   desc: '光伏电缆连接插件: MC4 <br />光伏电缆4mm<br />输出控制箱:2P40A',
+                // },
               ]"
             />
           </div>

@@ -11,7 +11,7 @@ withDefaults(defineProps<{
 </script>
 
 <template>
-  <div class="blue-btn gradient-blue-bg inline-flex" :class="size">
+  <div class="blue-btn gradient-blue-bg inline-flex cursor-pointer" :class="size">
     <!-- -->
     <slot />
   </div>

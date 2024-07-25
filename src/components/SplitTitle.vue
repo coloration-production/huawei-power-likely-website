@@ -12,7 +12,8 @@ const props = withDefaults(defineProps<{
 
 const titleStr = computed(() => {
   const t = props.title || ''
-  return t.split('').join('|')
+  // return t.split('').join('|')
+  return t
 })
 </script>
 
