@@ -16,7 +16,7 @@ withDefaults(defineProps<{
 </script>
 
 <template>
-  <div class="house-package op-30">
+  <div class="house-package">
     <!-- -->
     <img :src="cover" class="absolute bottom-0 z-1 w-129" :class="coverRight ? 'right-0' : 'left-0'" alt="">
     <div

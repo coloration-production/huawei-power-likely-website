@@ -18,7 +18,7 @@ defineOptions({ name: 'MobilePowerSystem' })
           </div>
         </TheAlignContainer>
       </section>
-      <section class="h-270 pt-12">
+      <section class="h-270 bg-white pt-12">
         <TheAlignContainer class="pt-4">
           <SplitTitle title="产品信息" class="mb-9" />
           <TabButtonGroup class="mb-9">
@@ -33,10 +33,10 @@ defineOptions({ name: 'MobilePowerSystem' })
             </button>
           </TabButtonGroup>
 
-          <div class="relative mb-8 h-70 rounded-2xl bg-red op-70">
+          <div class="relative mb-8 h-70 rounded-2xl">
             <img class="absolute inset-0 z-1" src="/mobile-power-system-02-01.png" alt="">
 
-            <div class="relative z-2 px-10 pt-14">
+            <div class="relative z-2 px-10 pt-14 text-shadow text-shadow-color-black">
               <div class="mb-7 text-2xl text-white font-700 tracking-wider text-shadow text-shadow-color-black">
                 双向逆变储能电源
               </div>
@@ -67,12 +67,12 @@ defineOptions({ name: 'MobilePowerSystem' })
           </div>
         </TheAlignContainer>
       </section>
-      <section class="h-270 bg-op-30 bg-cover" style="background-image: url(/mobile-power-system-03.png)" />
-      <section class="h-282 bg-op-30 pt-10">
+      <section class="h-270 bg-cover" style="background-image: url(/mobile-power-system-03.png)" />
+      <section class="h-282 bg-sky-100 pt-10">
         <SplitTitle title="应用场景" />
 
         <TheAlignContainer>
-          <div class="grid grid-cols-4 grid-rows-3 gap-5 pt-10 op-60">
+          <div class="grid grid-cols-4 grid-rows-3 gap-5 pt-10">
             <div class="relative row-span-2">
               <img class="h-full w-full" src="/mobile-power-system-04-01.png" alt="">
               <div class="mps-card-desc">
@@ -112,7 +112,7 @@ defineOptions({ name: 'MobilePowerSystem' })
           </div>
         </TheAlignContainer>
       </section>
-      <section class="h-270 bg-green bg-op-30 bg-cover pt-12" style="background-image: url(/mobile-power-system-05.png)">
+      <section class="h-270 bg-cover pt-12" style="background-image: url(/mobile-power-system-05.png)">
         <SplitTitle title="联系我们" color="#ffffff" class="mb-11" />
         <ContactForm />
       </section>

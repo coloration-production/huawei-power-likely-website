@@ -28,9 +28,9 @@ defineOptions({ name: 'HouseLandlord' })
           </div>
         </TheAlignContainer>
       </section>
-      <section class="h-270 bg-red bg-op-30" />
+      <section class="h-270" />
       <section class="h-268 bg-cover" style="background-image: url(/houselord-03.png)" />
-      <section class="h-270 pt-17">
+      <section class="h-270 bg-white pt-17">
         <SplitTitle title="产品信息" />
         <TheAlignContainer class="pt-16">
           <TabButtonGroup>
@@ -64,7 +64,7 @@ defineOptions({ name: 'HouseLandlord' })
           </div>
         </TheAlignContainer>
       </section>
-      <section class="h-270 bg-op-30 pt-24">
+      <section class="h-270 bg-sky-100 pt-24">
         <SplitTitle title="案例展示" />
 
         <TheAlignContainer class="pt-20">
@@ -96,7 +96,7 @@ defineOptions({ name: 'HouseLandlord' })
           </div>
         </TheAlignContainer>
       </section>
-      <section class="h-467 bg-red bg-op-30">
+      <section class="h-467 bg-white">
         <TheAlignContainer class="pt-18">
           <SplitTitle title="套餐展示" class="mb-18" />
           <div class="flex flex-col gap-26">
@@ -132,7 +132,7 @@ defineOptions({ name: 'HouseLandlord' })
           </div>
         </TheAlignContainer>
       </section>
-      <section class="h-213 bg-cover pt-12 op-30" style="background-image: url(/houselord-06.png);">
+      <section class="h-270 bg-cover pt-12" style="background-image: url(/houselord-06.png);">
         <SplitTitle title="联系我们" color="#ffffff" class="mb-10" />
         <ContactForm />
       </section>

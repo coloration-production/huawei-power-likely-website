@@ -16,7 +16,7 @@ defineOptions({ name: 'ProductPage' })
         </TheAlignContainer>
       </section>
 
-      <section class="h-124 pt-10">
+      <section class="h-394 bg-white pt-10">
         <TheAlignContainer>
           <div class="mb-5 flex gap-4">
             <div class="product-tab-btn">
@@ -91,7 +91,7 @@ defineOptions({ name: 'ProductPage' })
 }
 
 .product-tab-btn.active {
-  @apply text-blue border-blue;
+  @apply text-blue-600 border-blue;
 }
 
 .product-tab-btn img {
