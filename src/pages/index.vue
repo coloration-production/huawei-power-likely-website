@@ -4,18 +4,20 @@
 import SwiperCore, { Autoplay, EffectCoverflow, Navigation } from 'swiper/core'
 import 'swiper/css'
 import { Swiper, SwiperSlide } from 'swiper/vue'
-import { companyDetail, headerRequest } from '~/api/common'
+import { companyDetail } from '~/api/common'
 
 defineOptions({
   name: 'IndexPage',
 })
+
+const common = useCommonStore()
+console.log(common)
 
 SwiperCore.use([EffectCoverflow, Navigation, Autoplay])
 
 const pageData = ref<any>(null)
 const loading = ref(true)
 const error = ref<string | null>(null)
-headerRequest({ type: 1 })
 
 onMounted(async () => {
   try {
@@ -29,13 +31,6 @@ onMounted(async () => {
     loading.value = false
   }
 })
-
-const onSwiper: any = (swiper: any) => {
-  console.log(swiper)
-}
-const onSlideChange: any = () => {
-  console.log('slide change')
-}
 
 const coverflowEffect = {
   rotate: 0, // slide做3d旋转时Y轴的旋转角度。默认50。
@@ -81,7 +76,6 @@ const coverflowEffect = {
             <Swiper
               :slides-per-view="2" :centered-slides="true" effect="coverflow"
               :coverflow-effect="coverflowEffect" :loop="true" :navigation="{ nextEl: '.bus-next', prevEl: '.bus-prev' }"
-              @swiper="onSwiper" @slide-change="onSlideChange"
             >
               <SwiperSlide v-for="i in 5" :key="i">
                 <img src="https://fakeimg.pl/600x400/282828/eae0d0/?text=%E4%BA%A7%E5%93%81%E5%9B%BE&font=noto" alt="" srcset="">
