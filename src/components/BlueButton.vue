@@ -19,13 +19,13 @@ withDefaults(defineProps<{
 
 <style lang="postcss">
 .blue-btn {
-  @apply text-white hover:shadow-lg tracking-wider rounded-full text-sm  px-7;
+  @apply text-white hover:shadow-lg tracking-wider rounded-full text-xl text-shadow text-shadow-color-white px-7;
 }
 
 .blue-btn.md {
   @apply py-3;
 }
 .blue-btn.lg {
-  @apply py-4;
+  @apply py-5;
 }
 </style>

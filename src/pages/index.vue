@@ -1,9 +1,9 @@
 <!-- eslint-disable vue/component-name-in-template-casing -->
 <!-- eslint-disable no-console -->
 <script setup lang="ts">
-import { Swiper, SwiperSlide } from 'swiper/vue'
 import SwiperCore, { Autoplay, EffectCoverflow, Navigation } from 'swiper/core'
 import 'swiper/css'
+import { Swiper, SwiperSlide } from 'swiper/vue'
 import { companyDetail, headerRequest } from '~/api/common'
 
 defineOptions({
@@ -71,7 +71,8 @@ const coverflowEffect = {
       <div class="company-photo-wall h-180 bg-[#E7F0FF]">
         <TheAlignContainer>
           <div class="pb-10 pt-14 text-center text-[2.2rem]">
-            {{ pageData?.company_overview_title }}公 ｜ 司 ｜ 概 ｜ 况
+            <SplitTitle title="公司概况" />
+            {{ pageData?.company_overview_title }}
           </div>
           <div class="pb-10 text-center text-xl text-neutral-500 font-thin">
             {{ pageData?.company_overview_content }}公司概况内容公司概况内容公司概况内容

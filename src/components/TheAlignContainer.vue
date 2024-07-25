@@ -1,24 +1,20 @@
 <script lang="ts" setup>
-import { defineOptions } from 'vue';
+import { defineOptions } from 'vue'
 
-defineOptions({ name: 'the-align-container' })
-
-
+defineOptions({ name: 'TheAlignContainer' })
 </script>
 
 <template>
   <div class="the-align-container">
     <!-- -->
-    <slot></slot>
+    <slot />
   </div>
 </template>
 
 <style lang="postcss">
 .the-align-container {
-  @apply
-    max-w-[1024px]
+  @apply max-w-[1200px]
     mx-auto
-    relative
-  ;
+    relative;
 }
 </style>

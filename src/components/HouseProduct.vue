@@ -17,15 +17,15 @@ withDefaults(defineProps<{
 <template>
   <div class="house-product">
     <!-- -->
-    <img class="mb-6 h-46 w-full" :src="cover" alt="">
+    <img class="mb-6 h-60 w-full" :src="cover" alt="">
     <div class="title">
       {{ title }}
     </div>
-    <div class="mb-6 truncate text-xs text-gray-500">
+    <div class="text-md mb-8 truncate text-gray-500">
       {{ sub }}
     </div>
-    <div class="mb-6 text-center text-gray-600" v-html="desc" />
-    <router-link :to="moreLink" class="mb-8 text-blue">
+    <div class="mb-8 text-center text-xl text-gray-600" v-html="desc" />
+    <router-link :to="moreLink" class="mb-8 text-xl text-blue">
       查看更多
     </router-link>
   </div>
@@ -33,7 +33,7 @@ withDefaults(defineProps<{
 
 <style lang="postcss">
 .house-product {
-  @apply flex flex-col items-center rounded-2xl overflow-hidden border-2px border-transparent;
+  @apply flex h-138 flex-col items-center rounded-2xl overflow-hidden border-2px border-transparent;
 }
 .house-product:hover,
 .house-product.active {
@@ -42,6 +42,6 @@ withDefaults(defineProps<{
 }
 
 .house-product .title {
-  @apply px-2 text-xl font-700 mb-7 truncate text-gray-700;
+  @apply px-2 text-[1.6rem] font-700 mb-7 truncate text-gray-700;
 }
 </style>

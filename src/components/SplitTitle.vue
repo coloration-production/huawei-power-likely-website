@@ -25,7 +25,7 @@ const titleStr = computed(() => {
 
 <style lang="postcss">
 .split-title {
-  @apply w-full text-center font-700 text-[1.7rem];
+  @apply w-full text-center font-700 text-[2.4rem];
   letter-spacing: 1.1rem;
 }
 </style>

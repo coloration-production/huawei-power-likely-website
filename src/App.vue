@@ -20,6 +20,15 @@ useHead({
   ],
 })
 
+onMounted(() => {
+  // if (import.meta.env.PROD) {
+  //   // 0.83vw 代表在宽度是1920px的情况下16px的值 即 16 / 1920 * 100
+  // }
+  // else {
+  //   document.documentElement.style.fontSize = 16 / window.screen.availWidth * 100 + 'vw'
+  // }
+})
+
 useNprogress()
 useAos()
 </script>

@@ -17,10 +17,10 @@ const form = reactive({
 </script>
 
 <template>
-  <TheAlignContainer class="h-full px-9">
+  <TheAlignContainer class="h-full">
     <div class="contact-form">
       <!-- -->
-      <div class="grid grid-cols-2 gap-x-16 gap-y-4.4">
+      <div class="grid grid-cols-2 gap-x-18 gap-y-6">
         <div class="form-item">
           <label for="company">公司</label>
           <input v-model="form.company" type="text">
@@ -59,8 +59,8 @@ const form = reactive({
         </div>
       </div>
 
-      <div class="w-full flex justify-center pt-5">
-        <BlueButton>
+      <div class="w-full flex justify-center pt-8">
+        <BlueButton size="lg">
           确认提交
         </BlueButton>
       </div>
@@ -70,7 +70,7 @@ const form = reactive({
 
 <style lang="postcss">
 .contact-form {
-  @apply w-full py-10 px-16 bg-white rounded-xl;
+  @apply w-full pt-14 pb-8 px-20 bg-white rounded-xl;
 }
 
 .form-item {
@@ -78,15 +78,15 @@ const form = reactive({
 }
 
 .form-item > label {
-  @apply block mb-2;
+  @apply block mb-2 text-lg;
 }
 
 .form-item > textarea,
 .form-item > input {
-  @apply w-full outline-0 border-1 border-gray-400 rounded-lg text-xl py-2 px-2;
+  @apply w-full outline-0 border-1 border-gray-400 rounded-lg text-[1.4rem] py-3 px-2;
 }
 
 .form-item > textarea {
-  @apply h-34;
+  @apply h-44;
 }
 </style>
