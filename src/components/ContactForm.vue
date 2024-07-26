@@ -1,7 +1,7 @@
 <!-- eslint-disable no-alert -->
 <script lang="ts" setup>
-import { defineOptions } from 'vue'
 import md5 from 'md5'
+import { defineOptions } from 'vue'
 import { submitMessage } from '~/api/common'
 
 defineOptions({ name: 'ContactForm' })

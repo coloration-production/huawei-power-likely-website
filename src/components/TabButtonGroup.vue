@@ -5,7 +5,7 @@ defineOptions({ name: 'TabBtnGroup' })
 </script>
 
 <template>
-  <div class="tab-btn-group">
+  <div class="tab-btn-group" data-aos="fade-up" data-aos-delay="200">
     <!-- -->
     <slot />
   </div>

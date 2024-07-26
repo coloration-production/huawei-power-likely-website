@@ -6,69 +6,63 @@ defineOptions({ name: 'Cooperation' })
 
 <template>
   <div class="cooperation">
-    <!-- -->
-    <img class="relative z-1 mx-auto w-[1920px]" src="/cooperation.png" alt="">
-    <div class="absolute top-26 z-2 w-full">
-      <!-- -->
-
-      <section class="h-124 bg-cover" style="background-image: url(/cooperation-01.png)">
-        <TheAlignContainer class="h-full pt-36">
-          <div class="mb-7 text-7xl text-black font-700 text-shadow text-shadow-color-black">
-            如何购买？
-          </div>
-          <div class="coop-list">
-            <div class="coop-list-item">
-              <span class="coop-list-order">01</span>
-              <div class="text-[1.6rem]">
-                <span>您可以留下联系方式</span>
-              </div>
-            </div>
-            <div class="coop-list-item">
-              <span class="coop-list-order">02</span>
-              <div class="flex flex-col text-[1.6rem]">
-                <span>我们的销售顾问将联系您</span>
-                <span>为您提供定制化的光伏解决方案</span>
-              </div>
+    <section class="h-124 bg-cover" style="background-image: url(/cooperation-01.png)">
+      <TheAlignContainer class="h-full pt-36">
+        <div class="mb-7 text-7xl text-black font-700 text-shadow text-shadow-color-black">
+          如何购买？
+        </div>
+        <div class="coop-list">
+          <div class="coop-list-item">
+            <span class="coop-list-order">01</span>
+            <div class="text-[1.6rem]">
+              <span>您可以留下联系方式</span>
             </div>
           </div>
-        </TheAlignContainer>
-      </section>
-      <section class="bg-white pt-10">
-        <TheAlignContainer>
-          <div class="flex justify-between">
-            <div>
-              <div class="mb-6 text-[2.5rem]">
-                联系我们
-              </div>
+          <div class="coop-list-item">
+            <span class="coop-list-order">02</span>
+            <div class="flex flex-col text-[1.6rem]">
+              <span>我们的销售顾问将联系您</span>
+              <span>为您提供定制化的光伏解决方案</span>
+            </div>
+          </div>
+        </div>
+      </TheAlignContainer>
+    </section>
+    <section class="bg-white pt-10">
+      <TheAlignContainer>
+        <div class="flex justify-between">
+          <div>
+            <div class="mb-6 text-[2.5rem]">
+              联系我们
+            </div>
 
-              <div class="flex flex-col gap-8">
+            <div class="flex flex-col gap-8">
+              <div
+                v-for="(item, i) in [
+                  { color: '#2C77F4', name: '用户式业主', icon: '/product-02-icon01.png' },
+                  { color: '#F2981E', name: '工商业储能', icon: '/product-02-icon02.png' },
+                  { color: '#B34DF3', name: '移动电源', icon: '/product-02-icon03.png' },
+                  { color: '#3EA44D', name: '灌溉系统', icon: '/product-02-icon04.png' },
+                ]" :key="i"
+              >
                 <div
-                  v-for="(item, i) in [
-                    { color: '#2C77F4', name: '用户式业主', icon: '/product-02-icon01.png' },
-                    { color: '#F2981E', name: '工商业储能', icon: '/product-02-icon02.png' },
-                    { color: '#B34DF3', name: '移动电源', icon: '/product-02-icon03.png' },
-                    { color: '#3EA44D', name: '灌溉系统', icon: '/product-02-icon04.png' },
-                  ]" :key="i"
+                  class="mb-3 inline-flex items-center gap-2 rounded-full bg-op-16 px-4 py-2 pr-6"
+                  :style="{ backgroundColor: item.color }"
                 >
-                  <div
-                    class="mb-3 inline-flex items-center gap-2 rounded-full bg-op-16 px-4 py-2 pr-6"
-                    :style="{ backgroundColor: item.color }"
-                  >
-                    <img class="w-8" :src="item.icon" alt="">
-                    <span class="text-2xl tracking-widest">{{ item.name }}</span>
-                  </div>
-                  <div class="text-xl line-height-8 uppercase">
-                    <div>邮箱：289382839@foxmail.com</div>
-                    <div>联系人：张经理</div>
-                  </div>
+                  <img class="w-8" :src="item.icon" alt="">
+                  <span class="text-2xl tracking-widest">{{ item.name }}</span>
+                </div>
+                <div class="text-xl line-height-8 uppercase">
+                  <div>邮箱：289382839@foxmail.com</div>
+                  <div>联系人：张经理</div>
                 </div>
               </div>
             </div>
-            <ContactForm class="translate-x-20 rounded-xl shadow-lg -translate-y-52" />
           </div>
-        </TheAlignContainer>
-      </section>
-    </div>
+          <ContactForm class="translate-x-20 rounded-xl shadow-lg -translate-y-52" />
+        </div>
+      </TheAlignContainer>
+    </section>
   </div>
 </template>
 

@@ -56,8 +56,8 @@ async function toggleLocales() {
         </AppLink>
       </nav>
 
-      <div class="h-full flex items-center gap-6 text-xl">
-        <AppLink :active-match-level="1" to="/cooperation">
+      <div class="h-full flex items-center gap-6 text-lg">
+        <AppLink class="coop-nav" :active-match-level="1" to="/cooperation">
           {{ pageData?.call_me }}
         </AppLink>
         <a :title="t('button.toggle_langs')" class="flex items-center gap-2" @click="toggleLocales()">
@@ -74,28 +74,36 @@ async function toggleLocales() {
 
 <style lang="postcss">
 .the-header {
-  @apply w-full h-20 border-b border-b-black bg-white dark:bg-black dark:border-b-white;
+  @apply fixed z-10 top-0 w-full h-22 bg-white dark:bg-black dark:border-b-white;
 }
 
+.coop-nav::before,
 .the-header-nav a::before {
   @apply content-empty
-  hidden absolute bottom-0 h-[6px] rounded-full w-12 left-1/2 -ml-6 bg-blue;
+  hidden absolute bottom-0 h-[6px] rounded-full w-12 left-1/2 -ml-6;
+  background-image: linear-gradient(90deg, #2b77f4 0%, #519dff 100%);
 }
 
+.coop-nav.app-link-active,
 .the-header-nav a.app-link-active {
   @apply text-shadow text-shadow-color-black;
 }
 
+.coop-nav.app-link-active::before,
 .the-header-nav a:hover::before,
 .the-header-nav a.app-link-active::before {
   @apply block;
 }
 
 .the-header-nav {
-  @apply flex-1 flex gap-5.4 h-full relative text-xl;
+  @apply flex-1 flex gap-5.4 h-full relative text-lg tracking-wider;
 }
 
 .the-header-nav a {
   @apply relative flex items-center bg-op-30 cursor-pointer px-1 h-full dark:hover:bg-white dark:hover:text-black;
+}
+
+.coop-nav {
+  @apply relative h-full flex items-center;
 }
 </style>

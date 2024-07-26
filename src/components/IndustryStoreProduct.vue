@@ -20,17 +20,17 @@ withDefaults(defineProps<{
     <div class="deco-bg" :class="coverRight ? 'right' : 'left'" />
     <TheAlignContainer>
       <div class="flex" :class="coverRight ? 'flex-row-reverse' : ''">
-        <div>
+        <div :data-aos="coverRight ? 'fade-left' : 'fade-right'">
           <img :src="cover" class="w-144 pt-6" alt="">
         </div>
         <div class="flex flex-1 flex-col justify-start pt-37" :class="coverRight ? 'items-start' : 'items-end'">
-          <div class="mb-9 text-[3.5rem] font-700">
+          <div class="mb-9 text-[3.5rem] font-700" data-aos="fade-up">
             {{ title }}
           </div>
-          <div class="mb-5 text-2xl text-black tracking-wider">
+          <div class="mb-5 text-2xl text-black tracking-wider" data-aos="fade-up" data-aos-delay="200">
             {{ sub }}
           </div>
-          <div class="w-110 text-xl text-gray-500" :class="coverRight ? 'text-left' : 'text-right'">
+          <div class="w-110 text-xl text-gray-500" :class="coverRight ? 'text-left' : 'text-right'" data-aos="fade-up" data-aos-delay="300">
             {{ desc }}
           </div>
         </div>

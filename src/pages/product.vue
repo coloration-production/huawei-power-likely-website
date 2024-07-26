@@ -6,78 +6,69 @@ defineOptions({ name: 'ProductPage' })
 
 <template>
   <div class="product-page">
-    <img class="relative z-1 mx-auto w-[1920px]" src="/product.png" alt="">
-    <div class="absolute top-26 z-2 w-full">
-      <section class="h-124 bg-cover" style="background-image: url(/product-01.png)">
-        <TheAlignContainer class="pt-50">
-          <div class="text-8xl font-700 tracking-wide">
-            产品
-          </div>
-        </TheAlignContainer>
-      </section>
+    <section class="h-124 bg-cover" style="background-image: url(/product-01.png)" data-aos="fade-up">
+      <TheAlignContainer class="pt-50">
+        <div class="text-8xl font-700 tracking-wide" data-aos="fade-up" data-aos-delay="100">
+          产品
+        </div>
+      </TheAlignContainer>
+    </section>
 
-      <section class="h-394 bg-white pt-10">
-        <TheAlignContainer>
-          <div class="mb-5 flex gap-4">
-            <div class="product-tab-btn">
-              <img src="/product-02-icon01.png" alt="">
-              用户式储能
-            </div>
-            <div class="product-tab-btn active">
-              <img src="/product-02-icon02.png" alt="">
-              工商业储能
-            </div>
-            <div class="product-tab-btn">
-              <img src="/product-02-icon03.png" alt="">
-              灌溉系统
-            </div>
-            <div class="product-tab-btn">
-              <img src="/product-02-icon04.png" alt="">
-              移动电源
-            </div>
+    <section class="h-394 bg-white pt-10">
+      <TheAlignContainer>
+        <div class="mb-5 flex gap-4" data-aos="fade-up" data-aos-delay="200">
+          <div class="product-tab-btn">
+            <img src="/product-02-icon01.png" alt="">
+            用户式储能
           </div>
-
-          <TabButtonGroup class="mb-6">
-            <button class="active">
-              全部产品
-            </button>
-            <button>电池组</button>
-            <button>逆变器</button>
-          </TabButtonGroup>
-
-          <div class="grid grid-cols-3 grid-rows-2 mb-8 gap-6">
-            <HouseProduct
-              v-for="i in 6"
-              :key="i"
-              class="flex-1"
-              cover="/houselord-03.png"
-              title="单项5KW-10KWH堆叠式储能"
-              sub="智能组件控制器"
-              desc="适配多种类型组件，简单易用<br /> 自动生成组件排布图<5S"
-              more-link=""
-            />
+          <div class="product-tab-btn active">
+            <img src="/product-02-icon02.png" alt="">
+            工商业储能
           </div>
-
-          <div class="pagination">
-            <div class="w-25">
-              上一页
-            </div>
-            <div>1</div>
-            <div>2</div>
-            <div class="active">
-              3
-            </div>
-            <div>...</div>
-            <div>4</div>
-            <div>5</div>
-            <div>6</div>
-            <div class="w-25">
-              下一页
-            </div>
+          <div class="product-tab-btn">
+            <img src="/product-02-icon03.png" alt="">
+            灌溉系统
           </div>
-        </TheAlignContainer>
-      </section>
-    </div>
+          <div class="product-tab-btn">
+            <img src="/product-02-icon04.png" alt="">
+            移动电源
+          </div>
+        </div>
+
+        <TabButtonGroup class="mb-6">
+          <button class="active">
+            全部产品
+          </button>
+          <button>电池组</button>
+          <button>逆变器</button>
+        </TabButtonGroup>
+
+        <div class="grid grid-cols-3 grid-rows-2 mb-8 gap-6" data-aos="fade-up" data-aos-delay="100">
+          <HouseProduct
+            v-for="i in 6" :key="i" class="flex-1" cover="/houselord-03.png" title="单项5KW-10KWH堆叠式储能"
+            sub="智能组件控制器" desc="适配多种类型组件，简单易用<br /> 自动生成组件排布图<5S" more-link=""
+          />
+        </div>
+
+        <div class="pagination">
+          <div class="w-25">
+            上一页
+          </div>
+          <div>1</div>
+          <div>2</div>
+          <div class="active">
+            3
+          </div>
+          <div>...</div>
+          <div>4</div>
+          <div>5</div>
+          <div>6</div>
+          <div class="w-25">
+            下一页
+          </div>
+        </div>
+      </TheAlignContainer>
+    </section>
   </div>
 </template>
 

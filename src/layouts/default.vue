@@ -15,12 +15,10 @@ onBeforeMount(async () => {
 <template>
   <main class="page-container">
     <TheHeader />
-    <div class="flex-1">
-      <RouterView />
+    <RouterView />
 
-      <div v-if="y > 300" data-aos="fade-left" class="anchor-top" @click="y = 0">
-        TOP
-      </div>
+    <div v-if="y > 300" data-aos="fade-left" class="anchor-top" @click="y = 0">
+      TOP
     </div>
     <TheFooter />
   </main>
@@ -28,7 +26,7 @@ onBeforeMount(async () => {
 
 <style lang="postcss">
 .page-container {
-  @apply gray-700 dark:gray-200 min-h-100vh flex flex-col justify-between relative;
+  @apply gray-700 dark:gray-200 relative;
 }
 
 .anchor-top {

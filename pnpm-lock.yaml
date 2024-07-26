@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      '@coloration/kit':
+        specifier: ^1.8.0
+        version: 1.8.0
       '@unhead/vue':
         specifier: ^1.9.10
         version: 1.9.10(vue@3.4.27(typescript@5.4.5))
@@ -866,6 +869,9 @@ packages:
     resolution: {integrity: sha512-0MhX9/B4iL6Re04jPrttDm+BsP8y6mS7byuv0BvXgdXhbV5PdlsHt55dvNsuBCPZ7xq1oTAOOuotR9NFbQyMSA==}
     bundledDependencies:
       - is-unicode-supported
+
+  '@coloration/kit@1.8.0':
+    resolution: {integrity: sha512-1OArywxhTp6+vZwcRniP/36fdcTPhcmqi+NPLubhtRlqHt5BnZKu4vWXjRxKsou66EAXbMbZ08tvQChLwFMSFQ==}
 
   '@colors/colors@1.5.0':
     resolution: {integrity: sha512-ooWCrlZP11i8GImSjTHYHLkvFDP48nS4+204nGb1RiX/WXYHmJA2III9/e2DWVabCESdW7hBAEzHRqUn9OUVvQ==}
@@ -2368,6 +2374,10 @@ packages:
     resolution: {integrity: sha512-atNjmYfHsvTuCaxTxLZr9xGoHz53LLui3266WWxXJHY7+N6OdwJdg/feEa3T+buez9dmUXHT1izCOklqG82uCQ==}
     engines: {node: ^16.0.0 || ^18.0.0 || >=20.0.0}
     hasBin: true
+
+  d3-format@3.1.0:
+    resolution: {integrity: sha512-YyUI6AEuY/Wpt8KWLgZHsIU86atmikuoOmCfommt0LYHiQSPjvX2AcFc38PX0CBpr2RCyZhjex+NS/LPOv6YqA==}
+    engines: {node: '>=12'}
 
   dashdash@1.14.1:
     resolution: {integrity: sha512-jRFi8UDGo6j+odZiEpjazZaWqEal3w/basFjQHQEwVtZJGDpxbH1MeYluwCS8Xq5wmLJooDlMgvVarmWfGM44g==}
@@ -5204,7 +5214,6 @@ packages:
 
   workbox-google-analytics@7.0.0:
     resolution: {integrity: sha512-MEYM1JTn/qiC3DbpvP2BVhyIH+dV/5BjHk756u9VbwuAhu0QHyKscTnisQuz21lfRpOwiS9z4XdqeVAKol0bzg==}
-    deprecated: It is not compatible with newer versions of GA starting with v4, as long as you are using GAv3 it should be ok, but the package is not longer being maintained
 
   workbox-navigation-preload@7.0.0:
     resolution: {integrity: sha512-juWCSrxo/fiMz3RsvDspeSLGmbgC0U9tKqcUPZBCf35s64wlaLXyn2KdHHXVQrb2cqF7I0Hc9siQalainmnXJA==}
@@ -6134,6 +6143,10 @@ snapshots:
       '@clack/core': 0.3.4
       picocolors: 1.0.1
       sisteransi: 1.0.5
+
+  '@coloration/kit@1.8.0':
+    dependencies:
+      d3-format: 3.1.0
 
   '@colors/colors@1.5.0':
     optional: true
@@ -7949,6 +7962,8 @@ snapshots:
       tmp: 0.2.1
       untildify: 4.0.0
       yauzl: 2.10.0
+
+  d3-format@3.1.0: {}
 
   dashdash@1.14.1:
     dependencies:

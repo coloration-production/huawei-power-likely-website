@@ -8,6 +8,7 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     AppLink: typeof import('./components/AppLink.vue')['default']
+    BlackCard: typeof import('./components/BlackCard.vue')['default']
     BlueButton: typeof import('./components/BlueButton.vue')['default']
     ContactForm: typeof import('./components/ContactForm.vue')['default']
     HousePackage: typeof import('./components/HousePackage.vue')['default']
@@ -17,6 +18,9 @@ declare module 'vue' {
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     ScrollCard: typeof import('./components/ScrollCard.vue')['default']
+    ScrollCardView: typeof import('./components/ScrollCardView.vue')['default']
+    Scrollfix: typeof import('./components/Scrollfix.vue')['default']
+    ScrollFix: typeof import('./components/ScrollFix.vue')['default']
     ScrollFrame: typeof import('./components/ScrollFrame.vue')['default']
     SplitTitle: typeof import('./components/SplitTitle.vue')['default']
     TabButtonGroup: typeof import('./components/TabButtonGroup.vue')['default']
