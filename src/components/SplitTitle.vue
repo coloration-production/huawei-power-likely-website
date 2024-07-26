@@ -4,9 +4,10 @@ import { defineOptions } from 'vue'
 defineOptions({ name: 'SplitTitle' })
 
 const props = withDefaults(defineProps<{
-  title: string
+  title?: string
   color?: string
 }>(), {
+  title: '',
   color: '#000000',
 })
 

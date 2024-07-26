@@ -1,4 +1,5 @@
 <script setup lang="ts">
+const router = useRouter()
 useHead({
   title: 'landing-page',
   meta: [
@@ -31,6 +32,10 @@ onMounted(() => {
 
 useNprogress()
 useAos()
+
+router.afterEach(() => {
+  window.scrollTo({ top: 0 })
+})
 </script>
 
 <template>

@@ -19,11 +19,11 @@ onBeforeMount(async () => {
     <TheAlignContainer class="flex items-end justify-between pt-7">
       <div>
         <div class="mb-4 flex">
-          <div class="mr-36 text-xl">
-            {{ pageData?.address }}
+          <div class="mr-36 flex items-center gap-2 text-xl">
+            <img class="h-6 w-6" src="/footer-location.png" alt="">{{ pageData?.address }}
           </div>
-          <div class="text-xl">
-            邮箱: {{ pageData?.email }}
+          <div class="flex items-center gap-2 text-xl">
+            <img class="h-6 w-6" src="/footer-mail.png" alt=""> 邮箱: {{ pageData?.email }}
           </div>
         </div>
         <div class="text-lg">
@@ -31,7 +31,12 @@ onBeforeMount(async () => {
         </div>
       </div>
       <div class="flex gap-4.4">
-        <div v-for="i in [1, 2, 3, 4, 5, 6]" :key="i" class="h-9 w-9 bg-black" />
+        <img class="h-9 w-9" src="/footer-facebook.png" alt="">
+        <img class="h-9 w-9" src="/footer-instagram.png" alt="">
+        <img class="h-9 w-9" src="/footer-linkedin.png" alt="">
+        <img class="h-9 w-9" src="/footer-youtube.png" alt="">
+        <img class="h-9 w-9" src="/footer-x.png" alt="">
+        <img class="h-9 w-9" src="/footer-p.png" alt="">
       </div>
     </TheAlignContainer>
     <div class="deco-circle" />

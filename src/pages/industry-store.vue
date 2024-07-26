@@ -2,6 +2,11 @@
 import { defineOptions } from 'vue'
 
 defineOptions({ name: 'IndustryStore' })
+const store = useCommonStore()
+
+onBeforeMount(() => {
+  store.preloadScrollImage('factory')
+})
 </script>
 
 <template>
@@ -82,7 +87,15 @@ defineOptions({ name: 'IndustryStore' })
         </TheAlignContainer>
       </ScrollFrame>
     </section>
-    <section class="h-270 bg-op-30 bg-cover" style="background-image: url(/industry-store-03.png)" />
+    <section class="relative h-[5000px] bg-cover">
+      <ScrollFrame
+        v-slot="{ percent }"
+        class="h-278"
+        style="background-image: url(https://bjyjgjmy-yxgs.oss-us-east-1.aliyuncs.com/ui/factory/000.png)"
+      >
+        <img class="w-full" :src="store.getScrollImageUrl('factory', percent)">
+      </ScrollFrame>
+    </section>
     <section class="h-538 pt-18">
       <SplitTitle title="产品信息" />
 
@@ -97,13 +110,24 @@ defineOptions({ name: 'IndustryStore' })
         />
       </div>
     </section>
+    <!-- 轮播图 -->
     <section class="h-270 bg-[#E3ECFF] bg-op-30 pt-22">
       <SplitTitle title="应用场景" class="mb-2" />
-      <div class="text-center text-xl text-gray-400" data-aos="fade-up" data-aos-delay="200">
+      <div class="mb-12 text-center text-xl text-gray-400" data-aos="fade-up" data-aos-delay="200">
         可提供各种类型的安装方式，满足各行各业的不同需求
       </div>
+      <TheAlignContainer data-aos="fade-up" data-aos-delay="200" class="relative">
+        <div class="h-160 flex gap-6">
+          <div class="h-full flex-[1] bg-green op-80" />
+          <div class="flex-[2] bg-blue" />
+          <div class="h-full flex-[1] bg-green op-80" />
+        </div>
+
+        <div class="btn-prev bus-prev2 btn" />
+        <div class="btn-next bus-next2 btn" />
+      </TheAlignContainer>
     </section>
-    <section class="h-270 bg-op-30 bg-cover pt-12" style="background-image: url(/industry-store-04.png)">
+    <section class="h-270 bg-op-30 bg-cover pt-12" style="bckground-image: url(/industry-store-04.png)">
       <SplitTitle title="联系我们" color="#ffffff" class="mb-10" />
 
       <ContactForm />
@@ -114,5 +138,29 @@ defineOptions({ name: 'IndustryStore' })
 <style lang="postcss">
 .industry-store {
   @apply relative z-2;
+}
+
+.btn {
+  width: 57px;
+  height: 57px;
+  position: absolute;
+}
+
+.btn-prev {
+  @apply absolute top-2/4 -mt-10 -left-20;
+  background: url(../assets/zuo-1.png) no-repeat center;
+
+  &:hover {
+    background: url(../assets/zuo-2.png) no-repeat center;
+  }
+}
+
+.btn-next {
+  @apply absolute top-2/4 -mt-10 -right-20;
+  background: url(../assets/you-1.png) no-repeat center;
+
+  &:hover {
+    background: url(../assets/you-2.png) no-repeat center;
+  }
 }
 </style>

@@ -3,10 +3,12 @@ import { defineOptions } from 'vue'
 import { householdStyleRequest } from '~/api/common'
 
 defineOptions({ name: 'HouseLandlord' })
+const store = useCommonStore()
 const pageData = ref<any>(null)
 const taocanArr = ref<any>([])
 
 onMounted(async () => {
+  store.preloadScrollImage('family')
   const result: any = await householdStyleRequest({ type: 1 })
   pageData.value = result.data
   taocanArr.value = [{
@@ -99,6 +101,7 @@ function calcScaleStyle(percent: number) {
         </div>
       </TheAlignContainer>
     </section>
+    <!-- 滚动卡片 -->
     <section class="h-[5000px]">
       <ScrollFrame v-slot="{ percent }" class="h-270 bg-cover" style="background-image: url(/houselord-02.png)">
         <TheAlignContainer class="h-full w-full flex gap-20 pt-66">
@@ -146,10 +149,14 @@ function calcScaleStyle(percent: number) {
         </TheAlignContainer>
       </ScrollFrame>
     </section>
+    <!-- 滚动图片 -->
     <section class="relative h-[5000px] bg-cover">
-      <ScrollFrame v-slot="{ percent }" class="h-268" style="background-image: url(https://bjyjgjmy-yxgs.oss-us-east-1.aliyuncs.com/ui/family/001.png)">
-        {{ percent }}
-        <!-- <img class="w-full" :src="`https://bjyjgjmy-yxgs.oss-us-east-1.aliyuncs.com/ui/family/${ (Math.floor(180 * percent) + 1 + '').padStart(3, '0')}.png`" /> -->
+      <ScrollFrame
+        v-slot="{ percent }"
+        class="h-278"
+        style="background-image: url(https://bjyjgjmy-yxgs.oss-us-east-1.aliyuncs.com/ui/family/000.png)"
+      >
+        <img class="w-full" :src="store.getScrollImageUrl('family', percent)">
       </ScrollFrame>
     </section>
     <section class="h-270 bg-white pt-17">
@@ -202,6 +209,7 @@ function calcScaleStyle(percent: number) {
               <img class="h-full w-full" src="/houselord-04-05.png" alt="">
             </div>
             <div class="col-span-2">
+              <!-- center video -->
               <img class="h-full w-full" src="/houselord-04-06.png" alt="">
             </div>
             <div>

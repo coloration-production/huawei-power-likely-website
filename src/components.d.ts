@@ -19,8 +19,6 @@ declare module 'vue' {
     RouterView: typeof import('vue-router')['RouterView']
     ScrollCard: typeof import('./components/ScrollCard.vue')['default']
     ScrollCardView: typeof import('./components/ScrollCardView.vue')['default']
-    Scrollfix: typeof import('./components/Scrollfix.vue')['default']
-    ScrollFix: typeof import('./components/ScrollFix.vue')['default']
     ScrollFrame: typeof import('./components/ScrollFrame.vue')['default']
     SplitTitle: typeof import('./components/SplitTitle.vue')['default']
     TabButtonGroup: typeof import('./components/TabButtonGroup.vue')['default']

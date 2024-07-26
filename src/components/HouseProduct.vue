@@ -33,7 +33,7 @@ withDefaults(defineProps<{
 
 <style lang="postcss">
 .house-product {
-  @apply flex h-138 flex-col items-center rounded-2xl overflow-hidden border-2px border-transparent;
+  @apply flex h-138 flex-col items-center rounded-2xl shadow-lg overflow-hidden border-2px border-transparent;
 }
 .house-product:hover,
 .house-product.active {

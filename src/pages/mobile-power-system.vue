@@ -13,7 +13,8 @@ defineOptions({ name: 'MobilePowerSystem' })
         </div>
       </TheAlignContainer>
     </section>
-    <section class="h-270 bg-white pt-12">
+    <!-- 产品信息 -->
+    <section class="h-270 bg-[#EDF1F6] pt-12">
       <TheAlignContainer class="pt-4">
         <SplitTitle title="产品信息" class="mb-9" />
         <TabButtonGroup class="mb-9">
@@ -28,7 +29,7 @@ defineOptions({ name: 'MobilePowerSystem' })
           </button>
         </TabButtonGroup>
 
-        <div class="relative mb-8 h-70 rounded-2xl" data-aos="fade-up" data-aos-delay="400">
+        <div class="relative mb-8 h-70 rounded-2xl bg-white" data-aos="fade-up" data-aos-delay="400">
           <img class="absolute inset-0 z-1" src="/mobile-power-system-02-01.png" alt="">
 
           <div class="relative z-2 px-10 pt-14 text-shadow text-shadow-color-black">
@@ -46,7 +47,7 @@ defineOptions({ name: 'MobilePowerSystem' })
         <div class="grid grid-cols-4 mb-11 gap-5">
           <div
             v-for="i in 4" :key="i" data-aos="fade-up" :data-aos-delay="300 + i * 100"
-            class="h-84 overflow-hidden rounded-xl bg-white bg-op-30"
+            class="h-84 overflow-hidden rounded-xl bg-white bg-op-30 shadow-lg"
           >
             <img src="/houselord-03.png" class="mb-4 h-50" alt="">
             <div class="h-25 flex items-center justify-center px-10 text-center text-2xl">

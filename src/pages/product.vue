@@ -2,6 +2,37 @@
 import { defineOptions } from 'vue'
 
 defineOptions({ name: 'ProductPage' })
+const items = ref<any[]>([])
+const pMid = reactive({
+  offset: 1,
+  count: 5,
+})
+
+const {
+  currentPage,
+  // currentPageSize,
+  pageCount,
+  isFirstPage,
+  isLastPage,
+  prev,
+  next,
+} = useOffsetPagination({
+  total: items.value.length || 100,
+  page: 1,
+  pageSize: 6,
+  onPageChange: fetchProduct,
+  onPageSizeChange: fetchProduct,
+})
+
+function fetchProduct({ currentPage, currentPageSize, pageCount, isFirstPage, isLastPage }: any) {
+  return { currentPage, currentPageSize, pageCount, isFirstPage, isLastPage }
+}
+
+watch(currentPage, () => {
+  const leftEdge = Math.max(0, currentPage.value - pMid.count) + 1
+  const rightEdge = pageCount.value - pMid.count - 1
+  pMid.offset = Math.min(leftEdge, rightEdge)
+})
 </script>
 
 <template>
@@ -49,21 +80,57 @@ defineOptions({ name: 'ProductPage' })
             sub="智能组件控制器" desc="适配多种类型组件，简单易用<br /> 自动生成组件排布图<5S" more-link=""
           />
         </div>
-
         <div class="pagination">
-          <div class="w-25">
+          <div class="w-25" :disabled="isFirstPage" @click="prev">
             上一页
           </div>
-          <div>1</div>
-          <div>2</div>
-          <div class="active">
-            3
-          </div>
-          <div>...</div>
-          <div>4</div>
-          <div>5</div>
-          <div>6</div>
-          <div class="w-25">
+
+          <template v-if="pageCount <= 6">
+            <div
+              v-for="i in pageCount"
+              :key="i"
+              :disabled="currentPage === i"
+              :class="{ active: currentPage === i }"
+              @click="currentPage = i"
+            >
+              {{ i }}
+            </div>
+          </template>
+
+          <template v-else>
+            <div
+              :disabled="currentPage === 1"
+              :class="{ active: currentPage === 1 }"
+              @click="currentPage = 1"
+            >
+              1
+            </div>
+
+            <div v-show="pMid.offset > 1" class="pagination-dot">
+              ...
+            </div>
+            <div
+              v-for="i in pMid.count"
+              :key="i"
+              :disabled="currentPage === (i + pMid.offset)"
+              :class="{ active: currentPage === (i + pMid.offset) }"
+              @click="currentPage = (i + pMid.offset)"
+            >
+              {{ i + pMid.offset }}
+            </div>
+            <div v-if="currentPage < (pageCount - Math.floor(pMid.count / 2))" class="pagination-dot">
+              ...
+            </div>
+            <div
+              :disabled="currentPage === pageCount"
+              :class="{ active: currentPage === pageCount }"
+              @click="currentPage = pageCount"
+            >
+              {{ pageCount }}
+            </div>
+          </template>
+
+          <div class="w-25" :disabled="isLastPage" @click="next">
             下一页
           </div>
         </div>
@@ -90,16 +157,16 @@ defineOptions({ name: 'ProductPage' })
 }
 
 .pagination {
-  @apply flex justify-end gap-4.5;
+  @apply flex justify-end gap-4.5  select-none;
 }
 
 .pagination > div {
   @apply border border-gray-400 rounded-full min-w-13 text-center py-1.5 text-xl text-gray-500;
 }
 
-.pagination > div:hover,
-.pagination > div.active {
-  @apply text-white;
+.pagination > div:not(.pagination-dot):hover,
+.pagination > div:not(.pagination-dot).active {
+  @apply text-white cursor-pointer;
   background: linear-gradient(90deg, #2c76f4 0%, #519dff 100%);
 }
 </style>
