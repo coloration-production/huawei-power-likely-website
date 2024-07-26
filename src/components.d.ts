@@ -19,7 +19,6 @@ declare module 'vue' {
     ScrollCard: typeof import('./components/ScrollCard.vue')['default']
     ScrollFrame: typeof import('./components/ScrollFrame.vue')['default']
     SplitTitle: typeof import('./components/SplitTitle.vue')['default']
-    TabButonGroup: typeof import('./components/TabButonGroup.vue')['default']
     TabButtonGroup: typeof import('./components/TabButtonGroup.vue')['default']
     TheAlignContainer: typeof import('./components/TheAlignContainer.vue')['default']
     TheCounter: typeof import('./components/TheCounter.vue')['default']
