@@ -5,12 +5,23 @@ import { householdStyleRequest } from '~/api/common'
 defineOptions({ name: 'HouseLandlord' })
 const store = useCommonStore()
 const pageData = ref<any>(null)
+const chanpinArr = ref<any>([])
 const taocanArr = ref<any>([])
+const typeID = ref('')
+const productList = ref<any>([])
+const anliList = ref<any>([])
 
 onMounted(async () => {
   store.preloadScrollImage('family')
   const result: any = await householdStyleRequest({ type: 1 })
   pageData.value = result.data
+  chanpinArr.value = [
+    { title: result.data.chanpin_title_one, desc: result.data.chanpin_desc_one },
+    { title: result.data.chanpin_title_two, desc: result.data.chanpin_desc_two },
+    { title: result.data.chanpin_title_three, desc: result.data.chanpin_desc_three },
+    { title: result.data.chanpin_title_four, desc: result.data.chanpin_desc_four },
+    { title: result.data.chanpin_title_five, desc: result.data.chanpin_desc_five },
+  ]
   taocanArr.value = [{
     title: result.data.taocan_one_title,
     desc: result.data.taocan_one_desc,
@@ -72,10 +83,31 @@ onMounted(async () => {
       { title: result.data.taocan_three_fuchanpin_nine_title, xinghao: result.data.taocan_three_fuchanpin_nine_xinghao },
     ],
   }]
+  typeID.value = result.data.type_name_list[0].type_id
+  productList.value = result.data.product_list.splice(0, 3)
+  anliList.value = result.data.anli_img.split(',')
 })
 
 function calcScaleStyle(percent: number) {
   return { transform: `scale(${1 + (4 * (Math.min(0.8, Math.max(0.3, percent)) - 0.3) / (0.5))})` }
+}
+
+async function changeProductList(id: string) {
+  typeID.value = id
+  const result: any = await householdStyleRequest({ type: 1, type_id: id })
+  productList.value = result.data.product_list.splice(0, 3)
+}
+
+function isVideoOrImage(url: any) {
+  const videoExtensions = ['mp4', 'webm', 'ogg', 'avi', 'mov', 'wmv', 'flv', 'mkv']
+  const imageExtensions = ['jpg', 'jpeg', 'png', 'gif', 'bmp', 'svg', 'webp', 'tiff']
+  const extension = url.split('.').pop().toLowerCase()
+  if (videoExtensions.includes(extension))
+    return 'video'
+  else if (imageExtensions.includes(extension))
+    return 'image'
+  else
+    return 'unknown'
 }
 </script>
 
@@ -91,14 +123,14 @@ function calcScaleStyle(percent: number) {
         <div class="text-6xl text-white" data-aos="fade-up" data-aos-delay="400">
           {{ pageData?.banner_desc.split('|')[1] }}
         </div>
-        <div class="flex gap-8 pt-15" data-aos="fade-up" data-aos-delay="500">
+        <!-- <div class="flex gap-8 pt-15" data-aos="fade-up" data-aos-delay="500">
           <button class="rounded-full bg-white px-7 py-3 text-xl">
             立即预定
           </button>
           <button class="rounded-full bg-white px-7 py-3 text-xl">
             预约咨询
           </button>
-        </div>
+        </div> -->
       </TheAlignContainer>
     </section>
     <!-- 滚动卡片 -->
@@ -106,42 +138,43 @@ function calcScaleStyle(percent: number) {
       <ScrollFrame v-slot="{ percent }" class="h-270 bg-cover" style="background-image: url(/houselord-02.png)">
         <TheAlignContainer class="h-full w-full flex gap-20 pt-66">
           <div>
-            <div class="mb-80 pt-16 text-[3.4rem] text-white font-500" data-aos="fade-up">
-              端到端防护，无安全隐患
+            <div class="position-absolute mb-80 pt-16 text-[3.4rem] text-white font-500" data-aos="fade-up">
+              {{ pageData?.chanpin_title }}
             </div>
-            <div class="flex items-center justify-between" data-aos="fade-up" data-aos-delay="200">
+            <!-- <div class="flex items-center justify-between" data-aos="fade-up" data-aos-delay="200">
               <img
                 v-for="i in 5" :key="i" data-aos="fade-left" :data-aos-delay="300 + i * 100" class="h-12 w-12"
                 :src="`/houselord-02-i0${i}.png`" alt=""
               >
-            </div>
+            </div> -->
           </div>
           <ScrollCardView
-            :percent="percent" :items="[
+            v-if="chanpinArr.length" :percent="percent"
+            :items="[
               {
                 icon: '/houselord-02-i01.png',
-                title: '业内领先级安全防护1',
-                desc: '从光伏到储能，端到端防护措施保障系统安全',
+                title: chanpinArr[0].title,
+                desc: chanpinArr[0].desc,
               },
               {
                 icon: '/houselord-02-i02.png',
-                title: '业内领先级安全防护2',
-                desc: '从光伏到储能，端到端防护措施保障系统安全',
+                title: chanpinArr[1].title,
+                desc: chanpinArr[1].desc,
               },
               {
                 icon: '/houselord-02-i03.png',
-                title: '业内领先级安全防护3',
-                desc: '从光伏到储能，端到端防护措施保障系统安全',
+                title: chanpinArr[2].title,
+                desc: chanpinArr[2].desc,
               },
               {
                 icon: '/houselord-02-i04.png',
-                title: '业内领先级安全防护4',
-                desc: '从光伏到储能，端到端防护措施保障系统安全',
+                title: chanpinArr[3].title,
+                desc: chanpinArr[3].desc,
               },
               {
                 icon: '/houselord-02-i05.png',
-                title: '业内领先级安全防护5',
-                desc: '从光伏到储能，端到端防护措施保障系统安全',
+                title: chanpinArr[4].title,
+                desc: chanpinArr[4].desc,
               },
 
             ]"
@@ -162,27 +195,27 @@ function calcScaleStyle(percent: number) {
     <section class="h-270 bg-white pt-17">
       <SplitTitle :title="pageData?.chanpin_info_title" />
       <TheAlignContainer class="pt-16">
-        <TabButtonGroup>
-          <button class="active">
-            全部产品
+        <TabButtonGroup v-if="pageData?.type_name_list.length">
+          <!-- <button class="active">
+            {{ pageData?.all_product }}
+          </button> -->
+          <button v-for="item in pageData.type_name_list" :key="item.type_id" :class="typeID === item.type_id ? 'active' : ''" @click="changeProductList(item.type_id)">
+            {{ item.type_name }}
           </button>
-          <button>
-            电池组
-          </button>
-          <button>
+          <!-- <button>
             逆变器
-          </button>
+          </button> -->
         </TabButtonGroup>
         <div class="grid grid-cols-3 grid-rows-1 gap-6 pt-8">
           <HouseProduct
-            v-for="i in 3" :key="i" data-aos="fade-up" :data-aos-delay="400 + i * 100" class="flex-1"
-            cover="/houselord-03.png" title="单项5KW-10KWH堆叠式储能" sub="智能组件控制器" desc="适配多种类型组件，简单易用<br /> 自动生成组件排布图<5S"
-            more-link=""
+            v-for="(item, i) in productList" :key="item.id" data-aos="fade-up" :data-aos-delay="400 + i * 100" class="flex-1"
+            :cover="item.img" :title="item.name" :sub="item.desc" :desc="item.content"
+            more-link="/product"
           />
         </div>
 
         <div class="flex justify-center pt-24" data-aos="fade-up">
-          <RouterLink to="">
+          <RouterLink to="/product">
             <BlueButton>查看更多</BlueButton>
           </RouterLink>
         </div>
@@ -194,29 +227,29 @@ function calcScaleStyle(percent: number) {
         <TheAlignContainer class="pt-18">
           <div class="grid grid grid-cols-4 grid-rows-3 h-190 gap-4 bg-sky-100" :style="calcScaleStyle(percent)">
             <div>
-              <img class="h-full w-full" src="/houselord-04-01.png" alt="">
+              <img class="h-full w-full" :src="anliList[0]" alt="">
             </div>
             <div>
-              <img class="h-full w-full" src="/houselord-04-02.png" alt="">
+              <img class="h-full w-full" :src="anliList[1]" alt="">
             </div>
             <div>
-              <img class="h-full w-full" src="/houselord-04-03.png" alt="">
+              <img class="h-full w-full" :src="anliList[2]" alt="">
             </div>
             <div class="row-span-2">
-              <img class="h-full w-full" src="/houselord-04-04.png" alt="">
+              <img class="h-full w-full" :src="anliList[3]" alt="">
             </div>
             <div class="row-span-2">
-              <img class="h-full w-full" src="/houselord-04-05.png" alt="">
+              <img class="h-full w-full" :src="anliList[4]" alt="">
             </div>
-            <div class="col-span-2">
-              <!-- center video -->
-              <img class="h-full w-full" src="/houselord-04-06.png" alt="">
+            <div v-if="anliList[5]" class="col-span-2">
+              <video v-if="isVideoOrImage(anliList[5]) === 'video'" class="h-full w-full" :src="anliList[5]" />
+              <img v-if="isVideoOrImage(anliList[5]) === 'image'" class="h-full w-full" :src="anliList[5]" alt="">
             </div>
             <div>
-              <img class="h-full w-full" src="/houselord-04-07.png" alt="">
+              <img class="h-full w-full" :src="anliList[6]" alt="">
             </div>
             <div class="col-span-2">
-              <img class="h-full w-full" src="/houselord-04-08.png" alt="">
+              <img class="h-full w-full" :src="anliList[7]" alt="">
             </div>
           </div>
         </TheAlignContainer>
@@ -228,7 +261,7 @@ function calcScaleStyle(percent: number) {
         <div class="flex flex-col gap-26">
           <HousePackage
             v-for="(item, i) in taocanArr" :key="i" data-aos="fade-up" data-aos-delay="200"
-            :title="item.title" :sub="item.desc" :cover="item.img" link="" :cover-right="i % 2 === 0" :group="[
+            :title="item.title" :sub="item.desc" :cover="item.img" link="/product" :cover-right="i % 2 === 0" :group="[
               {
                 title: item.chanpin[0].xinghao.split('/')[0],
                 titleSuffix: item.chanpin[0].xinghao.split('/')[1],

@@ -31,9 +31,10 @@ async function toggleLocales() {
     <!-- -->
     <TheAlignContainer class="h-full flex items-center justify-between">
       <AppLink to="/" :title="t('button.home')" class="mr-6">
-        <div class="w-26 rounded-lg bg-blue-500 py-2 text-center text-white">
+        <img class="w-26 rounded-lg" :src="pageData?.logo" alt="">
+        <!-- <div class="w-26 rounded-lg bg-blue-500 py-2 text-center text-white">
           Logo
-        </div>
+        </div> -->
       </AppLink>
       <nav class="the-header-nav">
         <AppLink to="/">
@@ -75,6 +76,7 @@ async function toggleLocales() {
 <style lang="postcss">
 .the-header {
   @apply fixed z-10 top-0 w-full h-22 bg-white dark:bg-black dark:border-b-white;
+  border-bottom: 1px solid #dedede;
 }
 
 .coop-nav::before,

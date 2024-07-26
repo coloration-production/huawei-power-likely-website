@@ -19,7 +19,7 @@ withDefaults(defineProps<{
       <img class="mb-10 h-14 w-14" :src="icon" alt="">
       <div class="gradient-blue-bg mb-9 h-4px w-14 rounded-full" />
       <div class="mb-9 text-3xl tracking-widest" v-html="title" />
-      <div class="pl-2 text-[1.2rem] tracking-widest" v-html="desc" />
+      <div class="pl-2 text-[1.2rem] tracking-widest" v-html="desc.replace(/\|/g, '<br />')" />
     </div>
   </div>
 </template>

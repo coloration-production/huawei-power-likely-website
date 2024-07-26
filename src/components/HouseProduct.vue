@@ -15,16 +15,16 @@ withDefaults(defineProps<{
 </script>
 
 <template>
-  <div class="house-product">
+  <div class="house-product box-border cursor-pointer shadow-md">
     <!-- -->
-    <img class="mb-6 h-60 w-full" :src="cover" alt="">
-    <div class="title">
+    <img class="mb-6 h-60 w-full object-cover" :src="cover" alt="">
+    <div class="title w-full text-center">
       {{ title }}
     </div>
     <div class="text-md mb-8 truncate text-gray-500">
       {{ sub }}
     </div>
-    <div class="mb-8 text-center text-xl text-gray-600" v-html="desc" />
+    <div class="mb-8 px-5 text-center text-xl text-gray-600" v-html="desc" />
     <router-link :to="moreLink" class="mb-8 text-xl text-blue">
       查看更多
     </router-link>
@@ -42,6 +42,6 @@ withDefaults(defineProps<{
 }
 
 .house-product .title {
-  @apply px-2 text-[1.6rem] font-700 mb-7 truncate text-gray-700;
+  @apply px-4 text-[1.6rem] font-700 mb-7 truncate text-gray-700;
 }
 </style>

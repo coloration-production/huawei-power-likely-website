@@ -39,10 +39,10 @@ defineOptions({ name: 'Cooperation' })
             <div class="flex flex-col gap-8">
               <div
                 v-for="(item, i) in [
-                  { color: '#2C77F4', name: '用户式业主', icon: '/product-02-icon01.png' },
-                  { color: '#F2981E', name: '工商业储能', icon: '/product-02-icon02.png' },
-                  { color: '#B34DF3', name: '移动电源', icon: '/product-02-icon03.png' },
-                  { color: '#3EA44D', name: '灌溉系统', icon: '/product-02-icon04.png' },
+                  { color: 'rgba(44, 119, 244, 0.16)', name: '用户式业主', icon: '/product-02-icon01.png' },
+                  { color: 'rgba(242, 155, 30, 0.16)', name: '工商业储能', icon: '/product-02-icon02.png' },
+                  { color: 'rgba(179, 77, 243, 0.16)', name: '移动电源', icon: '/product-02-icon03.png' },
+                  { color: 'rgba(62, 164, 77, 0.16)', name: '灌溉系统', icon: '/product-02-icon04.png' },
                 ]" :key="i"
               >
                 <div
