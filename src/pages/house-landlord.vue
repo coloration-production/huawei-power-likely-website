@@ -11,8 +11,11 @@ const typeID = ref('')
 const productList = ref<any>([])
 const anliList = ref<any>([])
 
-onMounted(async () => {
+onBeforeMount(() => {
   store.preloadScrollImage('family')
+})
+
+onMounted(async () => {
   const result: any = await householdStyleRequest({ type: 1 })
   pageData.value = result.data
   chanpinArr.value = [
@@ -137,7 +140,7 @@ function isVideoOrImage(url: any) {
     <section class="h-[5000px]">
       <ScrollFrame v-slot="{ percent }" class="h-270 bg-cover" style="background-image: url(/houselord-02.png)">
         <TheAlignContainer class="h-full w-full flex gap-20 pt-66">
-          <div>
+          <div class="w-[40rem]">
             <div class="position-absolute mb-80 pt-16 text-[3.4rem] text-white font-500" data-aos="fade-up">
               {{ pageData?.chanpin_title }}
             </div>
@@ -291,9 +294,9 @@ function isVideoOrImage(url: any) {
         </div>
       </TheAlignContainer>
     </section>
-    <section class="h-270 bg-cover pt-12" style="background-image: url(/houselord-06.png);">
-      <SplitTitle title="联系我们" color="#ffffff" class="mb-10" />
-      <ContactForm />
+    <section v-if="pageData?.call_me_style === 1" class="h-270 bg-cover pt-12" :style="`background-image: url(${pageData?.call_me_img});`">
+      <SplitTitle :title="pageData?.call_me_title" color="#ffffff" class="mb-10" />
+      <ContactForm :labelform="pageData?.call_me_list" />
     </section>
   </div>
 </template>

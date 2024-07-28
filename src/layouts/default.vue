@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { loadLanguageAsync } from '~/modules/i18n'
 
-const { y } = useWindowScroll({ behavior: 'smooth' })
+// const { y } = useWindowScroll({ behavior: 'smooth' })
 const store = useAppStorage()
 
 const { locale } = useI18n()
@@ -17,9 +17,9 @@ onBeforeMount(async () => {
     <TheHeader />
     <RouterView />
 
-    <div v-if="y > 300" data-aos="fade-left" class="anchor-top" @click="y = 0">
+    <!-- <div v-if="y > 300" data-aos="fade-left" class="anchor-top" @click="y = 0">
       TOP
-    </div>
+    </div> -->
     <TheFooter />
   </main>
 </template>

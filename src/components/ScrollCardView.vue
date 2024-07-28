@@ -57,6 +57,6 @@ function getCardStyle(percent: number, stageOffset: number) {
 
 <style lang="postcss">
 .scroll-card-view {
-  @apply relative ml-[40rem];
+  @apply relative;
 }
 </style>

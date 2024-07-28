@@ -6,6 +6,16 @@ import { submitMessage } from '~/api/common'
 
 defineOptions({ name: 'ContactForm' })
 
+withDefaults(defineProps<{
+  labelform: {
+    [x: string]: any
+    type: object
+    required: true
+  }
+}>(), {
+
+})
+
 const form = reactive({
   company: '',
   position: '',
@@ -52,46 +62,46 @@ function submitData() {
       <!-- -->
       <div class="grid grid-cols-2 gap-x-18 gap-y-6">
         <div class="form-item">
-          <label for="company">公司</label>
+          <label for="company">{{ labelform.company }}</label>
           <input v-model="form.company" type="text">
         </div>
         <div class="form-item">
-          <label for="position">职位</label>
+          <label for="position">{{ labelform.position }}</label>
           <input v-model="form.position" type="text">
         </div>
         <div class="form-item">
-          <label for="nickname">称呼</label>
+          <label for="nickname">{{ labelform.call }}</label>
           <input v-model="form.nickname" type="text">
         </div>
         <div class="form-item">
-          <label for="name">姓名</label>
+          <label for="name">{{ labelform.name }}</label>
           <input v-model="form.name" type="text">
         </div>
         <div class="form-item">
-          <label for="email">邮箱</label>
+          <label for="email">{{ labelform.email }}</label>
           <input v-model="form.email" type="text">
         </div>
         <div class="form-item">
-          <label for="tel">电话</label>
+          <label for="tel">{{ labelform.phone }}</label>
           <input v-model="form.tel" type="text">
         </div>
         <div class="form-item">
-          <label for="city">城市</label>
+          <label for="city">{{ labelform.city }}</label>
           <input v-model="form.city" type="text">
         </div>
         <div class="form-item">
-          <label for="area">国家/地区</label>
+          <label for="area">{{ labelform.country }}</label>
           <input v-model="form.area" type="text">
         </div>
         <div class="form-item col-span-2">
-          <label for="message">信息</label>
+          <label for="message">{{ labelform.info }}</label>
           <textarea id="" v-model="form.message" name="" cols="30" rows="10" />
         </div>
       </div>
 
       <div class="w-full flex justify-center pt-8">
         <BlueButton size="lg" @click="submitData">
-          确认提交
+          {{ labelform.submit }}
         </BlueButton>
       </div>
     </div>

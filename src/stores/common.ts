@@ -17,12 +17,14 @@ export const useCommonStore = defineStore('common', () => {
   const baseData = ref(null)
 
   const preloadImageMax = {
+    powerbank: 216,
     factory: 202,
     family: 180,
     irrigate: 193,
   }
 
   const preloadImageState = reactive({
+    powerbank: 0,
     factory: 0,
     family: 0,
     irrigate: 0,

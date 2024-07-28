@@ -1,7 +1,37 @@
 <script lang="ts" setup>
 import { defineOptions } from 'vue'
+import { movepowerRequest } from '~/api/common'
 
 defineOptions({ name: 'MobilePowerSystem' })
+
+const pageData = ref<any>(null)
+const chanpinArr = ref<any>([])
+const productInfo = ref<any>([])
+const applicationList = ref<any>([])
+
+const store = useCommonStore()
+
+onBeforeMount(() => {
+  store.preloadScrollImage('powerbank')
+})
+
+onMounted(async () => {
+  const result: any = await movepowerRequest({ type: 1 })
+  pageData.value = result.data
+  chanpinArr.value = [
+    { title: result.data.chanpin_title_one, desc: result.data.chanpin_desc_one },
+    { title: result.data.chanpin_title_two, desc: result.data.chanpin_desc_two },
+    { title: result.data.chanpin_title_three, desc: result.data.chanpin_desc_three },
+    { title: result.data.chanpin_title_four, desc: result.data.chanpin_desc_four },
+    { title: result.data.chanpin_title_five, desc: result.data.chanpin_desc_five },
+  ]
+  productInfo.value = [
+    { title: result.data.chanpin_info_one_title, sub_title: result.data.chanpin_info_one_content_title, desc: result.data.chanpin_info_one_content_desc, img: result.data.chanpin_info_one_img },
+    { title: result.data.chanpin_info_two_title, sub_title: result.data.chanpin_info_two_content_title, desc: result.data.chanpin_info_two_content_desc, img: result.data.chanpin_info_two_img },
+    { title: result.data.chanpin_info_three_title, sub_title: result.data.chanpin_info_three_content_title, desc: result.data.chanpin_info_three_content_desc, img: result.data.chanpin_info_three_img },
+  ]
+  applicationList.value = result.data.application_list
+})
 </script>
 
 <template>
@@ -9,7 +39,8 @@ defineOptions({ name: 'MobilePowerSystem' })
     <section class="h-244 bg-cover" style="background-image: url(/mobile-power-system-01.png)" data-aos="fade-up">
       <TheAlignContainer class="h-full pt-98">
         <div class="mb-0 text-8xl text-white font-700" data-aos="fade-up" data-aos-delay="200">
-          移动电源系统
+          {{ pageData?.banner_desc.split('|')[0] }}
+          {{ pageData?.banner_desc.split('|')[1] }}
         </div>
       </TheAlignContainer>
     </section>
@@ -57,13 +88,21 @@ defineOptions({ name: 'MobilePowerSystem' })
         </div>
 
         <div class="flex justify-center">
-          <RouterLink>
+          <RouterLink to="/product">
             <BlueButton>查看更多</BlueButton>
           </RouterLink>
         </div>
       </TheAlignContainer>
     </section>
-    <section class="h-270 bg-cover" style="background-image: url(/mobile-power-system-03.png)" />
+    <section class="relative h-[5000px] bg-cover">
+      <ScrollFrame
+        v-slot="{ percent }"
+        class="h-278"
+        style="background-image: url(https://bjyjgjmy-yxgs.oss-us-east-1.aliyuncs.com/ui/powerbank/000.png)"
+      >
+        <img class="w-full" :src="store.getScrollImageUrl('powerbank', percent)">
+      </ScrollFrame>
+    </section>
     <section class="h-282 bg-sky-100 pt-10">
       <SplitTitle title="应用场景" />
 
@@ -108,9 +147,9 @@ defineOptions({ name: 'MobilePowerSystem' })
         </div>
       </TheAlignContainer>
     </section>
-    <section class="h-270 bg-cover pt-12" style="background-image: url(/mobile-power-system-05.png)">
-      <SplitTitle title="联系我们" color="#ffffff" class="mb-11" />
-      <ContactForm />
+    <section v-if="pageData?.call_me_power === 1" class="h-270 bg-cover pt-12" :style="`background-image: url(${pageData?.call_me_img});`">
+      <SplitTitle :title="pageData?.call_me_title" color="#ffffff" class="mb-11" />
+      <ContactForm :labelform="pageData?.call_me_list" />
     </section>
   </div>
 </template>
