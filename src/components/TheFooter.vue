@@ -1,15 +1,14 @@
 <script lang="ts" setup>
 import { defineOptions } from 'vue'
 
-import { headerRequest } from '~/api/common'
-
 defineOptions({ name: 'TheFooter' })
 
 const pageData = ref<any>(null)
 
+const store = useCommonStore()
+
 onBeforeMount(async () => {
-  const result: any = await headerRequest({ type: 1 })
-  pageData.value = result.data
+  pageData.value = await store.fetchBaseData()
 })
 </script>
 

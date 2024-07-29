@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import { acceptHMRUpdate, defineStore } from 'pinia'
 import { headerRequest } from '~/api/common'
 
@@ -31,9 +30,14 @@ export const useCommonStore = defineStore('common', () => {
   })
 
   async function fetchBaseData() {
-    const response: any = await headerRequest({ type: 1 })
-    baseData.value = response.data
-    console.log(JSON.stringify(baseData.value))
+    if (baseData.value) {
+      return baseData.value
+    }
+    else {
+      const response: any = await headerRequest({ type: 1 })
+      baseData.value = response.data
+      return response.data
+    }
   }
 
   function clearBaseData() {

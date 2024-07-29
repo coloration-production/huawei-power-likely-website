@@ -21,7 +21,7 @@ withDefaults(defineProps<{
     <div class="title w-full text-center">
       {{ title }}
     </div>
-    <div class="text-md mb-8 truncate text-gray-500">
+    <div class="text-md mb-8 w-full truncate px-5 text-gray-500">
       {{ sub }}
     </div>
     <div class="mb-8 px-5 text-center text-xl text-gray-600" v-html="desc" />

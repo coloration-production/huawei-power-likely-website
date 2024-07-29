@@ -1,11 +1,27 @@
 <script lang="ts" setup>
 import { defineOptions } from 'vue'
+import { productApplication, productDetail, productType } from '~/api/common'
 
 defineOptions({ name: 'ProductPage' })
 const items = ref<any[]>([])
 const pMid = reactive({
   offset: 1,
   count: 5,
+})
+
+const applicationList = ref<any>([])
+const typeList = ref<any>([])
+const productList = ref<any>([])
+const selectedAppId = ref(null)
+const selectedId = ref(null)
+
+const pageTitle = ref('')
+const pageBanner = ref('')
+
+onMounted(async () => {
+  const result: any = await productApplication({ type: 1 })
+  applicationList.value = result.data
+  changeApplication(result.data[0].id)
 })
 
 const {
@@ -33,14 +49,29 @@ watch(currentPage, () => {
   const rightEdge = pageCount.value - pMid.count - 1
   pMid.offset = Math.min(leftEdge, rightEdge)
 })
+
+async function changeApplication(id: any) {
+  selectedAppId.value = id
+  const result: any = await productType({ type: 1, application_id: selectedAppId.value })
+  typeList.value = result.data
+  changeType(0)
+}
+
+async function changeType(id: any) {
+  selectedId.value = id
+  const result: any = await productDetail({ type: 1, application_id: selectedAppId.value, product_type: id })
+  productList.value = result.data.product
+  pageTitle.value = result.data.title
+  pageBanner.value = result.data.img
+}
 </script>
 
 <template>
   <div class="product-page">
-    <section class="h-124 bg-cover" style="background-image: url(/product-01.png)" data-aos="fade-up">
+    <section class="h-124 bg-cover" :style="`background-image: url(${pageBanner})`" data-aos="fade-up">
       <TheAlignContainer class="pt-50">
         <div class="text-8xl font-700 tracking-wide" data-aos="fade-up" data-aos-delay="100">
-          产品
+          {{ pageTitle }}
         </div>
       </TheAlignContainer>
     </section>
@@ -48,7 +79,11 @@ watch(currentPage, () => {
     <section class="h-394 bg-white pt-10">
       <TheAlignContainer>
         <div class="mb-5 flex gap-4" data-aos="fade-up" data-aos-delay="200">
-          <div class="product-tab-btn">
+          <div v-for="(item, i) in applicationList" :key="item.id" :class="`product-tab-btn ${selectedAppId === item.id ? 'active' : ''}`" @click="changeApplication(item.id)">
+            <img :src="`/product-02-icon0${i + 1}.png`" alt="">
+            {{ item.name }}
+          </div>
+          <!-- <div class="product-tab-btn">
             <img src="/product-02-icon01.png" alt="">
             用户式储能
           </div>
@@ -63,22 +98,20 @@ watch(currentPage, () => {
           <div class="product-tab-btn">
             <img src="/product-02-icon04.png" alt="">
             移动电源
-          </div>
+          </div> -->
         </div>
 
         <TabButtonGroup class="mb-6">
-          <button class="active">
+          <button :class="`${selectedId === 0 ? 'active' : ''}`" @click="changeType(0)">
             全部产品
           </button>
-          <button>电池组</button>
-          <button>逆变器</button>
+          <button v-for="item in typeList" :key="item.id" :class="`${selectedId === item.id ? 'active' : ''}`" @click="changeType(item.id)">
+            {{ item.name }}
+          </button>
         </TabButtonGroup>
 
         <div class="grid grid-cols-3 grid-rows-2 mb-8 gap-6" data-aos="fade-up" data-aos-delay="100">
-          <HouseProduct
-            v-for="i in 6" :key="i" class="flex-1" cover="/houselord-03.png" title="单项5KW-10KWH堆叠式储能"
-            sub="智能组件控制器" desc="适配多种类型组件，简单易用<br /> 自动生成组件排布图<5S" more-link=""
-          />
+          <HouseProduct v-for="item in productList" :key="item.id" class="flex-1" :cover="item.img" :title="item.name" :sub="item.desc" :desc="item.content" more-link="" />
         </div>
         <div class="pagination">
           <div class="w-25" :disabled="isFirstPage" @click="prev">
@@ -145,7 +178,7 @@ watch(currentPage, () => {
 }
 
 .product-tab-btn {
-  @apply flex items-center flex-1 border-[2px] border-transparent h-30 shadow rounded-3xl pl-12 text-2xl gap-4 tracking-wider;
+  @apply flex items-center flex-1 border-[2px] border-transparent h-30 shadow rounded-3xl pl-12 text-2xl gap-4 tracking-wider cursor-pointer;
 }
 
 .product-tab-btn.active {

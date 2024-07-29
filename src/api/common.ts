@@ -39,3 +39,18 @@ export function callMe(params: any) {
 export function submitMessage(params: any) {
   return post('/company/submitmessage', params)
 }
+
+// 产品应用列表
+export function productApplication(params: any) {
+  return post('/company/productapplication', params)
+}
+
+// 产品分类列表
+export function productType(params: any) {
+  return post('/company/productproducttype', params)
+}
+
+// 产品页接口
+export function productDetail(params: any) {
+  return post('/company/productdetail', params)
+}

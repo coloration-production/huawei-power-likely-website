@@ -1,28 +1,26 @@
 <!-- eslint-disable no-console -->
 <script lang="ts" setup>
 import { defineOptions } from 'vue'
-import { loadLanguageAsync } from '~/modules/i18n'
-
-import { headerRequest } from '~/api/common'
 
 defineOptions({ name: 'TheHeader' })
 
 const pageData = ref<any>(null)
 
+const store = useCommonStore()
+
 onBeforeMount(async () => {
-  const result: any = await headerRequest({ type: 1 })
-  pageData.value = result.data
+  pageData.value = await store.fetchBaseData()
 })
 
-const store = useAppStorage()
+// const store = useAppStorage()
 
-const { t, locale } = useI18n()
+// const { t, locale } = useI18n()
 
 async function toggleLocales() {
   // change to some real logic
-  const newLocale = locale.value === 'zh-CN' ? 'en' : 'zh-CN'
-  await loadLanguageAsync(newLocale)
-  store.value.lang = locale.value = newLocale
+  // const newLocale = locale.value === 'zh-CN' ? 'en' : 'zh-CN'
+  // await loadLanguageAsync(newLocale)
+  // store.value.lang = locale.value = newLocale
 }
 </script>
 
@@ -30,7 +28,7 @@ async function toggleLocales() {
   <div class="the-header">
     <!-- -->
     <TheAlignContainer class="h-full flex items-center justify-between">
-      <AppLink to="/" :title="t('button.home')" class="mr-6">
+      <AppLink to="/" class="mr-6">
         <img class="w-26 rounded-lg" :src="pageData?.logo" alt="">
         <!-- <div class="w-26 rounded-lg bg-blue-500 py-2 text-center text-white">
           Logo
@@ -61,13 +59,13 @@ async function toggleLocales() {
         <AppLink class="coop-nav" :active-match-level="1" to="/cooperation">
           {{ pageData?.call_me }}
         </AppLink>
-        <a :title="t('button.toggle_langs')" class="flex items-center gap-2" @click="toggleLocales()">
+        <a class="flex items-center gap-2" @click="toggleLocales()">
           <div i-carbon-language /> 简体中文
         </a>
 
-        <a :title="t('button.toggle_dark')" @click="toggleDark()">
+        <!-- <a :title="t('button.toggle_dark')" @click="toggleDark()">
           <div i="carbon-sun dark:carbon-moon" />
-        </a>
+        </a> -->
       </div>
     </TheAlignContainer>
   </div>

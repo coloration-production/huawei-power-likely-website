@@ -1,15 +1,23 @@
 <script lang="ts" setup>
 import { defineOptions } from 'vue'
+import { callMe } from '~/api/common'
 
 defineOptions({ name: 'Cooperation' })
+
+const pageData = ref<any>(null)
+
+onMounted(async () => {
+  const result: any = await callMe({ type: 1 })
+  pageData.value = result.data
+})
 </script>
 
 <template>
   <div class="cooperation">
-    <section class="h-124 bg-cover" style="background-image: url(/cooperation-01.png)">
+    <section class="h-124 bg-cover" :style="`background-image: url(${pageData?.banner})`">
       <TheAlignContainer class="h-full pt-36">
         <div class="mb-7 text-7xl text-black font-700 text-shadow text-shadow-color-black">
-          如何购买？
+          {{ pageData?.banner_title }}
         </div>
         <div class="coop-list">
           <div class="coop-list-item">
@@ -59,7 +67,7 @@ defineOptions({ name: 'Cooperation' })
               </div>
             </div>
           </div>
-          <ContactForm class="translate-x-20 rounded-xl shadow-lg -translate-y-52" />
+          <ContactForm v-if="pageData" :labelform="pageData" class="translate-x-20 rounded-xl shadow-lg -translate-y-52" />
         </div>
       </TheAlignContainer>
     </section>
