@@ -5,28 +5,37 @@ import { defineOptions } from 'vue'
 defineOptions({ name: 'TheHeader' })
 
 const pageData = ref<any>(null)
+const langList = ref<any>([])
+const showLangSelect = ref(false)
+const curLang = ref<any>(null)
 
 const store = useCommonStore()
 
 onBeforeMount(async () => {
+  curLang.value = store.lang
+  langList.value = await store.fetchLanguage()
   pageData.value = await store.fetchBaseData()
 })
-
-// const store = useAppStorage()
-
-// const { t, locale } = useI18n()
 
 async function toggleLocales() {
   // change to some real logic
   // const newLocale = locale.value === 'zh-CN' ? 'en' : 'zh-CN'
   // await loadLanguageAsync(newLocale)
   // store.value.lang = locale.value = newLocale
+  showLangSelect.value = true
+}
+
+async function setLang(id: any) {
+  curLang.value = id
+  store.setLanguage(id)
+  showLangSelect.value = false
+  langList.value = await store.fetchLanguage()
+  pageData.value = await store.fetchBaseData()
 }
 </script>
 
 <template>
   <div class="the-header">
-    <!-- -->
     <TheAlignContainer class="h-full flex items-center justify-between">
       <AppLink to="/" class="mr-6">
         <img class="w-26 rounded-lg" :src="pageData?.logo" alt="">
@@ -59,9 +68,16 @@ async function toggleLocales() {
         <AppLink class="coop-nav" :active-match-level="1" to="/cooperation">
           {{ pageData?.call_me }}
         </AppLink>
-        <a class="flex items-center gap-2" @click="toggleLocales()">
-          <div i-carbon-language /> 简体中文
-        </a>
+        <div class="h-full flex cursor-pointer">
+          <a class="flex items-center gap-2" @click="toggleLocales">
+            <div i-carbon-language /> {{ langList.length ? (langList.find((el:any) => el.id === curLang) ? langList.find((el:any) => el.id === curLang).language : '') : '' }}
+          </a>
+          <ul v-if="showLangSelect" class="fixed top-22 color-white leading-10">
+            <li v-for="item in langList" :key="item.id" class="cursor-pointer" @click="setLang(item.id)">
+              {{ item.language }}
+            </li>
+          </ul>
+        </div>
 
         <!-- <a :title="t('button.toggle_dark')" @click="toggleDark()">
           <div i="carbon-sun dark:carbon-moon" />
@@ -69,6 +85,7 @@ async function toggleLocales() {
       </div>
     </TheAlignContainer>
   </div>
+  <div v-if="showLangSelect" class="fixed z-9 h-full w-full bg-black opacity-50" @click="() => showLangSelect = false" />
 </template>
 
 <style lang="postcss">

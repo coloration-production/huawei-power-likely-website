@@ -1,5 +1,3 @@
-<!-- eslint-disable vue/component-name-in-template-casing -->
-<!-- eslint-disable no-console -->
 <script setup lang="ts">
 import SwiperCore, { Autoplay, EffectCoverflow, Navigation } from 'swiper/core'
 import 'swiper/css'
@@ -15,8 +13,16 @@ SwiperCore.use([EffectCoverflow, Navigation, Autoplay])
 const pageData = ref<any>(null)
 const qualityImgs = ref([])
 
+const store = useCommonStore()
+
+watch(() => store.lang, async (newLanguage) => {
+  const result: any = await companyDetail({ type: newLanguage })
+  pageData.value = result.data
+  qualityImgs.value = result.data.company_qualifications_img.split(',')
+})
+
 onMounted(async () => {
-  const result: any = await companyDetail({ type: 1 })
+  const result: any = await companyDetail({ type: store.lang })
   pageData.value = result.data
   qualityImgs.value = result.data.company_qualifications_img.split(',')
 })
@@ -58,7 +64,7 @@ const coverflowEffect = {
             <SplitTitle :title="pageData?.company_overview_title" />
           </div>
           <div class="pb-10 text-center text-xl text-neutral-500 font-thin">
-            {{ pageData?.company_overview_content }}公司概况内容公司概况内容公司概况内容
+            {{ pageData?.company_overview_content }}
           </div>
           <div class="photo-swiper relative">
             <Swiper
@@ -84,7 +90,7 @@ const coverflowEffect = {
             {{ pageData?.company_qualifications_title }}
           </div>
           <div class="pb-10 text-center text-xl text-neutral-500 font-thin">
-            {{ pageData?.company_qualifications_content }}文案需要修改文案需要修改文案需要修改文案需要修改文案需要修改文案需要修改文案
+            {{ pageData?.company_qualifications_content }}
           </div>
           <div class="aptitude-swiper relative">
             <Swiper

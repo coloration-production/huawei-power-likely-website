@@ -18,12 +18,20 @@ const applicationList = ref<any>([])
 
 const curIndex = ref(1)
 
+watch(() => store.lang, async (newLanguage) => {
+  getPageData(newLanguage)
+})
+
 onBeforeMount(() => {
   store.preloadScrollImage('factory')
 })
 
 onMounted(async () => {
-  const result: any = await industryRequest({ type: 1 })
+  getPageData(store.lang)
+})
+
+async function getPageData(curlang: any) {
+  const result: any = await industryRequest({ type: curlang })
   pageData.value = result.data
   chanpinArr.value = [
     { title: result.data.chanpin_title_one, desc: result.data.chanpin_desc_one },
@@ -38,7 +46,7 @@ onMounted(async () => {
     { title: result.data.chanpin_info_three_title, sub_title: result.data.chanpin_info_three_content_title, desc: result.data.chanpin_info_three_content_desc, img: result.data.chanpin_info_three_img },
   ]
   applicationList.value = result.data.application_list
-})
+}
 
 const onSlideChangeTransitionEnd: any = (e: any) => {
   curIndex.value = e.realIndex

@@ -11,12 +11,20 @@ const typeID = ref('')
 const productList = ref<any>([])
 const anliList = ref<any>([])
 
+watch(() => store.lang, async (newLanguage) => {
+  getPageData(newLanguage)
+})
+
 onBeforeMount(() => {
   store.preloadScrollImage('family')
 })
 
-onMounted(async () => {
-  const result: any = await householdStyleRequest({ type: 1 })
+onMounted(() => {
+  getPageData(store.lang)
+})
+
+async function getPageData(curlang: any) {
+  const result: any = await householdStyleRequest({ type: curlang })
   pageData.value = result.data
   chanpinArr.value = [
     { title: result.data.chanpin_title_one, desc: result.data.chanpin_desc_one },
@@ -89,7 +97,7 @@ onMounted(async () => {
   typeID.value = result.data.type_name_list[0].type_id
   productList.value = result.data.product_list.splice(0, 3)
   anliList.value = result.data.anli_img.split(',')
-})
+}
 
 function calcScaleStyle(percent: number) {
   return { transform: `scale(${1 + (4 * (Math.min(0.8, Math.max(0.3, percent)) - 0.3) / (0.5))})` }

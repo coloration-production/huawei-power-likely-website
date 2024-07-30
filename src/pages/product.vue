@@ -9,6 +9,8 @@ const pMid = reactive({
   count: 5,
 })
 
+const store = useCommonStore()
+
 const applicationList = ref<any>([])
 const typeList = ref<any>([])
 const productList = ref<any>([])
@@ -18,8 +20,14 @@ const selectedId = ref(null)
 const pageTitle = ref('')
 const pageBanner = ref('')
 
+watch(() => store.lang, async (newLanguage) => {
+  const result: any = await productApplication({ type: newLanguage })
+  applicationList.value = result.data
+  changeApplication(result.data[0].id)
+})
+
 onMounted(async () => {
-  const result: any = await productApplication({ type: 1 })
+  const result: any = await productApplication({ type: store.lang })
   applicationList.value = result.data
   changeApplication(result.data[0].id)
 })
@@ -52,14 +60,14 @@ watch(currentPage, () => {
 
 async function changeApplication(id: any) {
   selectedAppId.value = id
-  const result: any = await productType({ type: 1, application_id: selectedAppId.value })
+  const result: any = await productType({ type: store.lang, application_id: selectedAppId.value })
   typeList.value = result.data
   changeType(0)
 }
 
 async function changeType(id: any) {
   selectedId.value = id
-  const result: any = await productDetail({ type: 1, application_id: selectedAppId.value, product_type: id })
+  const result: any = await productDetail({ type: store.lang, application_id: selectedAppId.value, product_type: id, pageindex: 1, pagesize: 6 })
   productList.value = result.data.product
   pageTitle.value = result.data.title
   pageBanner.value = result.data.img

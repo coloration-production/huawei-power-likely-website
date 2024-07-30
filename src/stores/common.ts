@@ -1,5 +1,5 @@
 import { acceptHMRUpdate, defineStore } from 'pinia'
-import { headerRequest } from '~/api/common'
+import { headerRequest, languageRequest } from '~/api/common'
 
 function loadImage(url: string) {
   return new Promise((resolve, reject) => {
@@ -14,6 +14,10 @@ const OSSPrefix = 'https://bjyjgjmy-yxgs.oss-us-east-1.aliyuncs.com/ui'
 
 export const useCommonStore = defineStore('common', () => {
   const baseData = ref(null)
+  const langList = ref<any>([])
+  const lang = useLocalStorage('light-power', {
+    lang: 1,
+  })
 
   const preloadImageMax = {
     powerbank: 216,
@@ -30,18 +34,19 @@ export const useCommonStore = defineStore('common', () => {
   })
 
   async function fetchBaseData() {
-    if (baseData.value) {
-      return baseData.value
-    }
-    else {
-      const response: any = await headerRequest({ type: 1 })
-      baseData.value = response.data
-      return response.data
-    }
+    const response: any = await headerRequest({ type: lang.value })
+    baseData.value = response.data
+    return response.data
   }
 
-  function clearBaseData() {
-    baseData.value = null
+  async function fetchLanguage() {
+    const response: any = await languageRequest({ type: lang.value })
+    langList.value = response.data
+    return response.data
+  }
+
+  function setLanguage(id: any) {
+    lang.value = id
   }
 
   function preloadScrollImage(type: keyof typeof preloadImageState) {
@@ -69,9 +74,10 @@ export const useCommonStore = defineStore('common', () => {
   }
 
   return {
-    baseData,
+    lang,
     fetchBaseData,
-    clearBaseData,
+    fetchLanguage,
+    setLanguage,
     preloadScrollImage,
     getScrollImageUrl,
   }

@@ -1,15 +1,4 @@
 <script setup lang="ts">
-import { loadLanguageAsync } from '~/modules/i18n'
-
-// const { y } = useWindowScroll({ behavior: 'smooth' })
-const store = useAppStorage()
-
-const { locale } = useI18n()
-
-onBeforeMount(async () => {
-  await loadLanguageAsync(store.value.lang)
-  locale.value = store.value.lang
-})
 </script>
 
 <template>

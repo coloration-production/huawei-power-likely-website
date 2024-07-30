@@ -15,8 +15,16 @@ onBeforeMount(() => {
   store.preloadScrollImage('powerbank')
 })
 
+watch(() => store.lang, async (newLanguage) => {
+  getPageData(newLanguage)
+})
+
 onMounted(async () => {
-  const result: any = await movepowerRequest({ type: 1 })
+  getPageData(store.lang)
+})
+
+async function getPageData(curlang: any) {
+  const result: any = await movepowerRequest({ type: curlang })
   pageData.value = result.data
 
   productInfo.value = [
@@ -67,7 +75,7 @@ onMounted(async () => {
     { title: result.data.application_five_title, img: result.data.application_five_img },
     { title: result.data.application_six_title, img: result.data.application_six_img },
   ]
-})
+}
 </script>
 
 <template>
