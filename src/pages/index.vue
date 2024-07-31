@@ -38,7 +38,6 @@ const coverflowEffect = {
 
 <template>
   <div class="company-page">
-    <!-- <img class="absolute relative z-1 mx-auto" src="/company.png" alt=""> -->
     <div class="w-full">
       <section class="h-125 bg-center bg-no-repeat" :style="`background-image: url(${pageData?.pc_cover})`">
         <TheAlignContainer class="h-full pt-45">

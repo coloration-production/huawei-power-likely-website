@@ -80,10 +80,7 @@ const onSlideChangeTransitionEnd: any = (e: any) => {
       </TheAlignContainer>
     </section>
     <section class="h-[5000px]">
-      <ScrollFrame
-        v-slot="{ percent }" class="h-270 bg-cover"
-        style="background-image: url(/industry-store-02.png)"
-      >
+      <ScrollFrame v-slot="{ percent }" class="h-270 bg-cover" :style="`background-image: url(${pageData?.part_two_img})`">
         <TheAlignContainer class="h-full w-full flex gap-20 pt-66">
           <div class="w-[40rem]">
             <div class="mb-80 pt-16 text-[3.4rem] text-white font-500" data-aos="fade-up">
@@ -101,27 +98,27 @@ const onSlideChangeTransitionEnd: any = (e: any) => {
             v-if="chanpinArr.length" :percent="percent"
             :items="[
               {
-                icon: '/houselord-02-i01.png',
+                icon: '/industry-02-i01.png',
                 title: chanpinArr[0].title,
                 desc: chanpinArr[0].desc,
               },
               {
-                icon: '/houselord-02-i02.png',
+                icon: '/industry-02-i02.png',
                 title: chanpinArr[1].title,
                 desc: chanpinArr[1].desc,
               },
               {
-                icon: '/houselord-02-i03.png',
+                icon: '/industry-02-i03.png',
                 title: chanpinArr[2].title,
                 desc: chanpinArr[2].desc,
               },
               {
-                icon: '/houselord-02-i04.png',
+                icon: '/industry-02-i04.png',
                 title: chanpinArr[3].title,
                 desc: chanpinArr[3].desc,
               },
               {
-                icon: '/houselord-02-i05.png',
+                icon: '/industry-02-i05.png',
                 title: chanpinArr[4].title,
                 desc: chanpinArr[4].desc,
               },

@@ -146,18 +146,12 @@ function isVideoOrImage(url: any) {
     </section>
     <!-- 滚动卡片 -->
     <section class="h-[5000px]">
-      <ScrollFrame v-slot="{ percent }" class="h-270 bg-cover" style="background-image: url(/houselord-02.png)">
+      <ScrollFrame v-slot="{ percent }" class="h-270 bg-cover" :style="`background-image: url(${pageData?.part_two_img})`">
         <TheAlignContainer class="h-full w-full flex gap-20 pt-66">
           <div class="w-[40rem]">
             <div class="position-absolute mb-80 pt-16 text-[3.4rem] text-white font-500" data-aos="fade-up">
               {{ pageData?.chanpin_title }}
             </div>
-            <!-- <div class="flex items-center justify-between" data-aos="fade-up" data-aos-delay="200">
-              <img
-                v-for="i in 5" :key="i" data-aos="fade-left" :data-aos-delay="300 + i * 100" class="h-12 w-12"
-                :src="`/houselord-02-i0${i}.png`" alt=""
-              >
-            </div> -->
           </div>
           <ScrollCardView
             v-if="chanpinArr.length" :percent="percent"

@@ -80,7 +80,7 @@ async function getPageData(curlang: any) {
 
 <template>
   <div class="mobile-power-system">
-    <section class="h-244 bg-cover" style="background-image: url(/mobile-power-system-01.png)" data-aos="fade-up">
+    <section class="h-244 bg-cover" :style="`background-image: url(${pageData?.banner})`" data-aos="fade-up">
       <TheAlignContainer class="h-full pt-98">
         <div class="mb-0 text-8xl text-white font-700" data-aos="fade-up" data-aos-delay="200">
           {{ pageData?.banner_desc.split('|')[0] }}
