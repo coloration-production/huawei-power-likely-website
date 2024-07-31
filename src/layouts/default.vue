@@ -15,10 +15,10 @@
 
 <style lang="postcss">
 .page-container {
-  @apply gray-700 dark:gray-200 relative;
+  @apply gray-700 relative;
 }
 
 .anchor-top {
-  @apply cursor-pointer fixed right-20 bottom-20 w-10 h-10 flex justify-center items-center border-1 border-black  dark:border-white;
+  @apply cursor-pointer fixed right-20 bottom-20 w-10 h-10 flex justify-center items-center border-1 border-black;
 }
 </style>

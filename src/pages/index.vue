@@ -137,18 +137,22 @@ const coverflowEffect = {
 
 .btn-prev {
   @apply absolute top-2/4 -mt-10 -left-20;
+  background-color: transparent !important;
   background: url(../assets/zuo-1.png) no-repeat center;
 
   &:hover {
+    background-color: transparent !important;
     background: url(../assets/zuo-2.png) no-repeat center;
   }
 }
 
 .btn-next {
   @apply absolute top-2/4 -mt-10 -right-20;
+  background-color: transparent !important;
   background: url(../assets/you-1.png) no-repeat center;
 
   &:hover {
+    background-color: transparent !important;
     background: url(../assets/you-2.png) no-repeat center;
   }
 }

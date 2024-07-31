@@ -52,6 +52,15 @@ function submitData() {
   const { company, position, nickname: call, name, email, tel: mobile, city, area: country, message: content } = form
   submitMessage({ sign, time: stamp, type: 1, country, city, company, position, name, mobile, email, content, call }).then((_res) => {
     alert('提交成功')
+    form.company = ''
+    form.position = ''
+    form.nickname = ''
+    form.name = ''
+    form.email = ''
+    form.tel = ''
+    form.city = ''
+    form.area = ''
+    form.message = ''
   })
 }
 </script>

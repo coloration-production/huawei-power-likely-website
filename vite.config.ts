@@ -101,7 +101,7 @@ export default defineConfig({
           defaultColor: false,
           themes: {
             light: 'vitesse-light',
-            dark: 'vitesse-dark',
+            dark: '',
           },
         }))
       },

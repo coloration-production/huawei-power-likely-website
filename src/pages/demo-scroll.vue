@@ -1,41 +1,37 @@
 <script lang="ts" setup>
-import { defineOptions } from 'vue';
+import { defineOptions } from 'vue'
 
-defineOptions({ name: 'demo-scroll' })
-const { y } = useWindowScroll() 
-
+defineOptions({ name: 'DemoScroll' })
+const { y } = useWindowScroll()
 
 function dynamicStyle(p: number) {
   // 0% - 50% => 0% - 100%
-  const xPercent = Math.min(p, 0.5) * 2 
+  const xPercent = Math.min(p, 0.5) * 2
 
   // 70% - 100% => 0% - 100%
-  const yPercent = (Math.max(p, 0.7) - 0.7) / (1 - 0.7)  
+  const yPercent = (Math.max(p, 0.7) - 0.7) / (1 - 0.7)
   return {
-    transform: `translate(${50 * xPercent}vw, ${-50 * yPercent}vh)`
+    transform: `translate(${50 * xPercent}vw, ${-50 * yPercent}vh)`,
   }
 }
-
 </script>
 
 <template>
   <div class="demo-scroll">
-    <ScrollFrame 
+    <ScrollFrame
+      v-slot="{ inRange, percent }"
       :distance="y"
       :range="[200, 1000]"
-      v-slot="{ inRange, percent }">
-      <div 
-        v-if="inRange >= 0" 
-        class="fixed w-20 h-20 border top-50 border-black dark:border-black"
+    >
+      <div
+        v-if="inRange >= 0"
+        class="fixed top-50 h-20 w-20 border border-black"
         :style="dynamicStyle(percent)"
-        >
-        {{ percent }} 
+      >
+        {{ percent }}
       </div>
-
     </ScrollFrame>
-    <p v-for="i in 1000" class="h-20" :style="{ background: i % 2 === 0 ? '#eee' : ''}">
-    
-    </p>
+    <p v-for="i in 1000" :key="i" class="h-20" :style="{ background: i % 2 === 0 ? '#eee' : '' }" />
   </div>
 </template>
 

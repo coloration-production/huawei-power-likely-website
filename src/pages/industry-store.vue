@@ -135,9 +135,9 @@ const onSlideChangeTransitionEnd: any = (e: any) => {
       <ScrollFrame
         v-slot="{ percent }"
         class="h-278"
-        style="background-image: url(https://bjyjgjmy-yxgs.oss-us-east-1.aliyuncs.com/ui/factory/000.png)"
+        style="background-image: url(https://bjyjgjmy-yxgs.oss-us-east-1.aliyuncs.com/ui/factory/000.png);background-repeat: no-repeat;background-size: 100% auto;"
       >
-        <img class="w-full" :src="store.getScrollImageUrl('factory', percent)">
+        <img class="w-full" style="max-height: 100%;object-fit: cover;" :src="store.getScrollImageUrl('factory', percent)">
       </ScrollFrame>
     </section>
     <section class="h-538 pt-18">
@@ -215,6 +215,7 @@ const onSlideChangeTransitionEnd: any = (e: any) => {
 
 .btn-prev {
   @apply absolute top-2/4 -mt-10 -left-20;
+  background-color: transparent !important;
   background: url(../assets/zuo-1.png) no-repeat center;
 
   &:hover {
@@ -224,6 +225,7 @@ const onSlideChangeTransitionEnd: any = (e: any) => {
 
 .btn-next {
   @apply absolute top-2/4 -mt-10 -right-20;
+  background-color: transparent !important;
   background: url(../assets/you-1.png) no-repeat center;
 
   &:hover {

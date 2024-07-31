@@ -36,9 +36,9 @@ async function setLang(id: any) {
 
 <template>
   <div class="the-header">
-    <TheAlignContainer class="h-full flex items-center justify-between">
-      <AppLink to="/" class="mr-6">
-        <img class="w-26 rounded-lg" :src="pageData?.logo" alt="">
+    <TheAlignContainer class="h-full flex items-center justify-between" style="max-width: 100%;">
+      <AppLink to="/" class="mr-6 box-border w-26 p-4">
+        <img class="rounded-lg" :src="pageData?.logo" alt="">
         <!-- <div class="w-26 rounded-lg bg-blue-500 py-2 text-center text-white">
           Logo
         </div> -->
@@ -90,7 +90,7 @@ async function setLang(id: any) {
 
 <style lang="postcss">
 .the-header {
-  @apply fixed z-10 top-0 w-full h-22 bg-white dark:bg-black dark:border-b-white;
+  @apply fixed z-10 top-0 w-full h-22 bg-white px-4;
   border-bottom: 1px solid #dedede;
 }
 
@@ -117,7 +117,7 @@ async function setLang(id: any) {
 }
 
 .the-header-nav a {
-  @apply relative flex items-center bg-op-30 cursor-pointer px-1 h-full dark:hover:bg-white dark:hover:text-black;
+  @apply relative flex items-center bg-op-30 cursor-pointer px-1 h-full;
 }
 
 .coop-nav {

@@ -140,9 +140,9 @@ async function getPageData(curlang: any) {
       <ScrollFrame
         v-slot="{ percent }"
         class="h-278"
-        style="background-image: url(https://bjyjgjmy-yxgs.oss-us-east-1.aliyuncs.com/ui/powerbank/000.png)"
+        style="background-image: url(https://bjyjgjmy-yxgs.oss-us-east-1.aliyuncs.com/ui/powerbank/000.png);background-repeat: no-repeat;background-size: 100% auto;"
       >
-        <img class="w-full" :src="store.getScrollImageUrl('powerbank', percent)">
+        <img class="w-full" style="max-height: 100%;object-fit: cover;" :src="store.getScrollImageUrl('powerbank', percent)">
       </ScrollFrame>
     </section>
     <section class="h-282 pt-10">
