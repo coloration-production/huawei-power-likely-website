@@ -28,6 +28,7 @@
     "pinia": "^2.1.7",
     "swiper": "7.4.1",
     "vue": "^3.4.27",
+    "vue-awesome-paginate": "^1.2.0",
     "vue-demi": "^0.14.7",
     "vue-i18n": "^9.13.1",
     "vue-router": "^4.3.2"

@@ -3,7 +3,7 @@ import type { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios'
 
 // 创建axios实例
 const instance = axios.create({
-  baseURL: '/api', // 设置API的基础URL
+  baseURL: 'http://aoqiang.miaobiapp.cn/index.php/api/', // 设置API的基础URL
 })
 
 // 请求拦截器

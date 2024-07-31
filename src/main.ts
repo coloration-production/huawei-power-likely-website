@@ -1,6 +1,9 @@
 import { setupLayouts } from 'virtual:generated-layouts'
 import { ViteSSG } from 'vite-ssg'
 
+import VueAwesomePaginate from 'vue-awesome-paginate'
+import 'vue-awesome-paginate/dist/style.css'
+
 import { routes } from 'vue-router/auto-routes'
 import App from './App.vue'
 import type { UserModule } from './types'
@@ -19,6 +22,8 @@ export const createApp = ViteSSG(
   },
   (ctx) => {
     // install all modules under `modules/`
+    ctx.app.use(VueAwesomePaginate)
+
     Object.values(import.meta.glob<{ install: UserModule }>('./modules/*.ts', { eager: true }))
       .forEach(i => i.install?.(ctx))
     // ctx.app.use(Previewer)
