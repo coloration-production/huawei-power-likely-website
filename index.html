@@ -7,6 +7,8 @@
     <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#00aba9" />
     <meta name="msapplication-TileColor" content="#00aba9" />
     <script>
+      let tmp = localStorage.getItem('light-power')
+      if (isNaN(tmp)) localStorage.removeItem('light-power')
       ;(function () {
         const prefersDark =
           window.matchMedia &&
@@ -17,7 +19,7 @@
       })()
     </script>
   </head>
-  <body class="font-sans">
+  <body>
     <div id="app"></div>
     <script type="module" src="/src/main.ts"></script>
     <noscript>

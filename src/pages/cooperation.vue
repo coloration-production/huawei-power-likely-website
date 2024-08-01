@@ -4,10 +4,17 @@ import { callMe } from '~/api/common'
 
 defineOptions({ name: 'Cooperation' })
 
+const store = useCommonStore()
+
 const pageData = ref<any>(null)
 
+watch(() => store.lang, async (newLanguage) => {
+  const result: any = await callMe({ type: newLanguage })
+  pageData.value = result.data
+})
+
 onMounted(async () => {
-  const result: any = await callMe({ type: 1 })
+  const result: any = await callMe({ type: store.lang })
   pageData.value = result.data
 })
 </script>
@@ -41,17 +48,17 @@ onMounted(async () => {
         <div class="flex justify-between">
           <div>
             <div class="mb-6 text-[2.5rem]">
-              联系我们
+              {{ pageData?.call_me_name }}
             </div>
 
-            <div class="flex flex-col gap-8">
+            <div v-if="pageData" class="flex flex-col gap-8">
               <div
                 v-for="(item, i) in [
-                  { color: 'rgba(44, 119, 244, 0.16)', name: '用户式业主', icon: '/product-02-icon01.png' },
-                  { color: 'rgba(242, 155, 30, 0.16)', name: '工商业储能', icon: '/product-02-icon02.png' },
-                  { color: 'rgba(179, 77, 243, 0.16)', name: '移动电源', icon: '/product-02-icon03.png' },
-                  { color: 'rgba(62, 164, 77, 0.16)', name: '灌溉系统', icon: '/product-02-icon04.png' },
-                ]" :key="i"
+                  { color: 'rgba(44, 119, 244, 0.16)', name: pageData.style_name, icon: '/product-02-icon01.png', user: pageData.call_name_style, email: pageData.call_email_style, mobile: pageData.call_mobile_style, show: pageData.show_style },
+                  { color: 'rgba(242, 155, 30, 0.16)', name: pageData.ind_name, icon: '/product-02-icon02.png', user: pageData.call_name_ind, email: pageData.call_email_ind, mobile: pageData.call_mobile_ind, show: pageData.show_ind },
+                  { color: 'rgba(179, 77, 243, 0.16)', name: pageData.irr_name, icon: '/product-02-icon03.png', user: pageData.call_name_irr, email: pageData.call_email_irr, mobile: pageData.call_mobile_irr, show: pageData.show_irr },
+                  { color: 'rgba(62, 164, 77, 0.16)', name: pageData.power_name, icon: '/product-02-icon04.png', user: pageData.call_name_power, email: pageData.call_email_power, mobile: pageData.call_mobile_power, show: pageData.show_power },
+                ]" v-show="item.show" :key="i"
               >
                 <div
                   class="mb-3 inline-flex items-center gap-2 rounded-full bg-op-16 px-4 py-2 pr-6"
@@ -61,8 +68,8 @@ onMounted(async () => {
                   <span class="text-2xl tracking-widest">{{ item.name }}</span>
                 </div>
                 <div class="text-xl line-height-8 uppercase">
-                  <div>邮箱：289382839@foxmail.com</div>
-                  <div>联系人：张经理</div>
+                  <div>邮箱：{{ item.email }}</div>
+                  <div>联系人：{{ item.user }}</div>
                 </div>
               </div>
             </div>

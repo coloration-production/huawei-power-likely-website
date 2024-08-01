@@ -24,7 +24,7 @@ withDefaults(defineProps<{
     <div class="text-md mb-8 w-full truncate px-5 text-center text-gray-500">
       {{ sub }}
     </div>
-    <div class="mb-8 px-5 text-center text-xl text-gray-600" v-html="desc" />
+    <div class="desc mb-8 px-5 text-center text-xl text-gray-600" v-html="desc" />
     <!-- <router-link :to="moreLink" class="mb-8 text-xl text-blue">
       查看更多
     </router-link> -->
@@ -43,5 +43,9 @@ withDefaults(defineProps<{
 
 .house-product .title {
   @apply px-4 text-[1.6rem] font-700 mb-7 truncate text-gray-700;
+}
+
+.desc * {
+  @apply break-all;
 }
 </style>

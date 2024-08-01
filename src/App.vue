@@ -1,33 +1,64 @@
 <script setup lang="ts">
 const router = useRouter()
-useHead({
-  title: 'landing-page',
-  meta: [
-    {
-      name: 'description',
-      content: 'landing page Template',
-    },
-    {
-      name: 'theme-color',
-      content: () => isDark.value ? '#00aba9' : '#ffffff',
-    },
-  ],
-  link: [
-    {
-      rel: 'icon',
-      type: 'image/svg+xml',
-      href: () => preferredDark.value ? '/favicon-dark.svg' : '/favicon.svg',
-    },
-  ],
+
+const store = useCommonStore()
+
+const pageData = ref<any>(null)
+
+onBeforeMount(async () => {
+  pageData.value = await store.fetchBaseData()
+  useHead({
+    title: pageData.value.name,
+    meta: [
+      {
+        name: 'description',
+        content: pageData.value.first_desc,
+      },
+      {
+        name: 'keyword',
+        content: pageData.value.first_keyword,
+      },
+      {
+        name: 'theme-color',
+        content: '#ffffff',
+      },
+    ],
+    link: [
+      {
+        rel: 'icon',
+        type: 'image/svg+xml',
+        href: '/favicon.svg',
+      },
+    ],
+  })
 })
 
-onMounted(() => {
-  // if (import.meta.env.PROD) {
-  //   // 0.83vw 代表在宽度是1920px的情况下16px的值 即 16 / 1920 * 100
-  // }
-  // else {
-  //   document.documentElement.style.fontSize = 16 / window.screen.availWidth * 100 + 'vw'
-  // }
+watch(() => store.lang, async (_newLanguage) => {
+  pageData.value = await store.fetchBaseData()
+  useHead({
+    title: pageData.value.name,
+    meta: [
+      {
+        name: 'description',
+        content: pageData.value.first_desc,
+      },
+      {
+        name: 'keyword',
+        content: pageData.value.first_keyword,
+      },
+      {
+        name: 'theme-color',
+        content: '#ffffff',
+      },
+    ],
+    link: [
+      {
+        rel: 'icon',
+        type: 'image/svg+xml',
+        href: '/favicon.svg',
+      },
+    ],
+  })
 })
 
 useNprogress()

@@ -232,29 +232,29 @@ function isVideoOrImage(url: any) {
         <TheAlignContainer class="pt-18">
           <div class="grid grid grid-cols-4 grid-rows-3 h-190 gap-4 bg-sky-100" :style="calcScaleStyle(percent)">
             <div>
-              <img class="h-full w-full" :src="anliList[0]" alt="">
+              <img class="h-full w-full object-cover" :src="anliList[0]" alt="">
             </div>
             <div>
-              <img class="h-full w-full" :src="anliList[1]" alt="">
+              <img class="h-full w-full object-cover" :src="anliList[1]" alt="">
             </div>
             <div>
-              <img class="h-full w-full" :src="anliList[2]" alt="">
+              <img class="h-full w-full object-cover" :src="anliList[2]" alt="">
             </div>
             <div class="row-span-2">
-              <img class="h-full w-full" :src="anliList[3]" alt="">
+              <img class="h-full w-full object-cover" :src="anliList[3]" alt="">
             </div>
             <div class="row-span-2">
-              <img class="h-full w-full" :src="anliList[4]" alt="">
+              <img class="h-full w-full object-cover" :src="anliList[4]" alt="">
             </div>
             <div v-if="anliList[5]" class="col-span-2">
-              <video v-if="isVideoOrImage(anliList[5]) === 'video'" class="h-full w-full" :src="anliList[5]" />
-              <img v-if="isVideoOrImage(anliList[5]) === 'image'" class="h-full w-full" :src="anliList[5]" alt="">
+              <video v-if="isVideoOrImage(anliList[5]) === 'video'" loop autoplay muted playsinline class="h-full w-full object-cover" :src="anliList[5]" />
+              <img v-if="isVideoOrImage(anliList[5]) === 'image'" class="h-full w-full object-cover" :src="anliList[5]" alt="">
             </div>
             <div>
-              <img class="h-full w-full" :src="anliList[6]" alt="">
+              <img class="h-full w-full object-cover" :src="anliList[6]" alt="">
             </div>
             <div class="col-span-2">
-              <img class="h-full w-full" :src="anliList[7]" alt="">
+              <img class="h-full w-full object-cover" :src="anliList[7]" alt="">
             </div>
           </div>
         </TheAlignContainer>

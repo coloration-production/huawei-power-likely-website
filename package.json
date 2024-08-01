@@ -3,6 +3,7 @@
   "private": true,
   "scripts": {
     "build": "vite-ssg build",
+    "build:web": "vite build",
     "dev": "vite --port 3333 --open",
     "lint": "eslint .",
     "preview": "vite preview",

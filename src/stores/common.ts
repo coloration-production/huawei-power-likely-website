@@ -15,9 +15,7 @@ const OSSPrefix = 'https://bjyjgjmy-yxgs.oss-us-east-1.aliyuncs.com/ui'
 export const useCommonStore = defineStore('common', () => {
   const baseData = ref(null)
   const langList = ref<any>([])
-  const lang = useLocalStorage('light-power', {
-    lang: 1,
-  })
+  const lang = useLocalStorage('light-power', '1')
 
   const preloadImageMax = {
     powerbank: 216,

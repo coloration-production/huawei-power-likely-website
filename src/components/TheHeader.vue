@@ -70,7 +70,7 @@ async function setLang(id: any) {
         </AppLink>
         <div class="h-full flex cursor-pointer">
           <a class="flex items-center gap-2" @click="toggleLocales">
-            <div i-carbon-language /> {{ langList.length ? (langList.find((el:any) => el.id === curLang) ? langList.find((el:any) => el.id === curLang).language : '') : '' }}
+            <div i-carbon-language /> {{ langList.length ? (langList.find((el:any) => Number(el.id) === Number(curLang)) ? langList.find((el:any) => Number(el.id) === Number(curLang)).language : '') : '' }}
           </a>
           <ul v-if="showLangSelect" class="fixed top-22 color-white leading-10">
             <li v-for="item in langList" :key="item.id" class="cursor-pointer" @click="setLang(item.id)">

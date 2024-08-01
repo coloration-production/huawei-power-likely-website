@@ -4,6 +4,8 @@ import { ViteSSG } from 'vite-ssg'
 import VueAwesomePaginate from 'vue-awesome-paginate'
 import 'vue-awesome-paginate/dist/style.css'
 
+import { createWebHashHistory } from 'vue-router'
+
 import { routes } from 'vue-router/auto-routes'
 import App from './App.vue'
 import type { UserModule } from './types'
@@ -17,6 +19,7 @@ import './styles/main.css'
 export const createApp = ViteSSG(
   App,
   {
+    history: createWebHashHistory(),
     routes: setupLayouts(routes),
     base: import.meta.env.BASE_URL,
   },
