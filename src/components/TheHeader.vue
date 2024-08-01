@@ -86,14 +86,17 @@ async function setLang(id: any) {
     </TheAlignContainer>
   </div>
   <div v-if="showLangSelect" class="fixed z-9 h-full w-full bg-black opacity-50" @click="() => showLangSelect = false" />
+  <div class="placeholder" />
 </template>
 
 <style lang="postcss">
 .the-header {
-  @apply fixed z-10 top-0 w-full h-22 bg-white px-4;
+  @apply fixed z-10 top-0 w-full h-24 bg-white px-4;
   border-bottom: 1px solid #dedede;
 }
-
+.placeholder {
+  @apply w-full h-24 px-4;
+}
 .coop-nav::before,
 .the-header-nav a::before {
   @apply content-empty
