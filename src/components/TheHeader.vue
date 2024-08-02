@@ -86,7 +86,7 @@ async function setLang(id: any) {
     </TheAlignContainer>
   </div>
   <div v-if="showLangSelect" class="fixed z-9 h-full w-full bg-black opacity-50" @click="() => showLangSelect = false" />
-  <div class="placeholder" />
+  <!-- <div class="placeholder" /> -->
 </template>
 
 <style lang="postcss">

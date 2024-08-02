@@ -55,7 +55,7 @@ const onSlideChangeTransitionEnd: any = (e: any) => {
 
 <template>
   <div class="industry-store">
-    <section class="h-244 bg-cover" :style="`background-image: url(${pageData?.banner})`" data-aos="fade-up">
+    <section class="h-screen bg-cover" :style="`background-image: url(${pageData?.banner})`" data-aos="fade-up">
       <TheAlignContainer class="h-full pt-77">
         <div
           class="mb-4 text-7xl text-white font-700 text-shadow text-shadow-color-black"

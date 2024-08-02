@@ -126,7 +126,7 @@ function isVideoOrImage(url: any) {
   <div class="house-landlord">
     <!-- -->
 
-    <section class="h-245 bg-cover" data-aos="fade-up" :style="`background-image: url(${pageData?.banner})`">
+    <section class="h-screen bg-cover" data-aos="fade-up" :style="`background-image: url(${pageData?.banner})`">
       <TheAlignContainer class="h-full pt-60">
         <div class="mb-4 text-7xl text-white font-700" data-aos="fade-up" data-aos-delay="200">
           {{ pageData?.banner_desc.split('|')[0] }}
@@ -221,7 +221,7 @@ function isVideoOrImage(url: any) {
 
         <div class="flex justify-center pt-24" data-aos="fade-up">
           <RouterLink to="/product">
-            <BlueButton>查看更多</BlueButton>
+            <BlueButton>{{ pageData?.chanpin_button }}</BlueButton>
           </RouterLink>
         </div>
       </TheAlignContainer>
@@ -266,7 +266,7 @@ function isVideoOrImage(url: any) {
         <div class="flex flex-col gap-26">
           <HousePackage
             v-for="(item, i) in taocanArr" :key="i" data-aos="fade-up" data-aos-delay="200"
-            :title="item.title" :sub="item.desc" :cover="item.img" link="/product" :cover-right="i % 2 === 0" :group="[
+            :title="item.title" :sub="item.desc" :cover="item.img" link="/product" :btn-txt="pageData?.taocan_action" :cover-right="i % 2 === 0" :group="[
               {
                 title: item.chanpin[0].xinghao.split('/')[0],
                 titleSuffix: item.chanpin[0].xinghao.split('/')[1],

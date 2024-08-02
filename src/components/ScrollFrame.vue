@@ -52,5 +52,6 @@ onMounted(() => {
 <style lang="postcss">
 .scroll-frame {
   @apply top-0 z-10 sticky w-full;
+  height: 100vh;
 }
 </style>

@@ -8,6 +8,7 @@ withDefaults(defineProps<{
   sub: string
   cover: string
   link?: string
+  btnTxt?: string
   coverRight?: boolean
   group: { title: string, titleSuffix: string, sub: string, desc: string }[]
 }>(), {
@@ -47,7 +48,7 @@ withDefaults(defineProps<{
         </div>
       </div>
       <RouterLink :to="link">
-        <BlueButton>查看详情</BlueButton>
+        <BlueButton>{{ btnTxt }}</BlueButton>
       </RouterLink>
     </div>
   </div>

@@ -25,9 +25,6 @@ withDefaults(defineProps<{
       {{ sub }}
     </div>
     <div class="desc mb-8 px-5 text-center text-xl text-gray-600" v-html="desc" />
-    <!-- <router-link :to="moreLink" class="mb-8 text-xl text-blue">
-      查看更多
-    </router-link> -->
   </div>
 </template>
 

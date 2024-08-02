@@ -21,7 +21,7 @@ onMounted(async () => {
 
 <template>
   <div class="cooperation">
-    <section class="h-124 bg-cover" :style="`background-image: url(${pageData?.banner})`">
+    <section class="h-screen bg-cover" :style="`background-image: url(${pageData?.banner})`">
       <TheAlignContainer class="h-full pt-36">
         <div class="mb-7 text-7xl text-black font-700 text-shadow text-shadow-color-black">
           {{ pageData?.banner_title }}
