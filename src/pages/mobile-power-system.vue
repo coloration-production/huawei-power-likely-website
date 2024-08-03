@@ -120,7 +120,7 @@ async function getPageData(curlang: any) {
         <div v-if="productInfo[curIndex]" class="grid grid-cols-4 mb-11 gap-5">
           <div
             v-for="(child, j) in productInfo[curIndex].children" :key="`${curIndex}_${j}`" data-aos="fade-up" :data-aos-delay="300 + j * 100"
-            class="h-84 overflow-hidden rounded-xl bg-white bg-op-30 shadow-lg"
+            class="h-84 overflow-hidden rounded-xl bg-white shadow-lg"
           >
             <img :src="child.img" class="mb-4 h-50 w-full object-cover" alt="">
             <div class="line-clamp-2 h-25 flex items-center justify-center px-10 text-center text-2xl">
@@ -131,7 +131,7 @@ async function getPageData(curlang: any) {
 
         <div class="flex justify-center">
           <RouterLink to="/product">
-            <BlueButton>查看更多</BlueButton>
+            <BlueButton>{{ pageData?.chanpin_button }}</BlueButton>
           </RouterLink>
         </div>
       </TheAlignContainer>
